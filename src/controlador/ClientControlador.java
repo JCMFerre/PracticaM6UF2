@@ -7,6 +7,12 @@ import model.Client;
 
 public class ClientControlador {
 
+    private final EntityManager entityManager;
+    
+    public ClientControlador() {
+        entityManager = EMController.obtenerEntityManager();
+    }
+    
     public boolean insertarClient(Client client) {
         return executarTransaccio(true, client);
     }
@@ -16,7 +22,6 @@ public class ClientControlador {
     }
 
     private boolean executarTransaccio(boolean insertar, Client client) {
-        EntityManager entityManager = EMController.obtenerEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         if (insertar) {

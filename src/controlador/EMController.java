@@ -6,9 +6,15 @@ import model.Info;
 
 public class EMController {
 
+    private static EntityManager instancia;
+
     public static EntityManager obtenerEntityManager() {
-        return Persistence.createEntityManagerFactory(Info.CONEXIO_INTERNA)
-                .createEntityManager();
+        if (instancia == null) {
+            instancia = Persistence
+                    .createEntityManagerFactory(Info.CONEXIO_INTERNA)
+                    .createEntityManager();
+        }
+        return instancia;
     }
 
 }
