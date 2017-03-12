@@ -9,8 +9,8 @@ public class ClientControlador {
 
     private final EntityManager entityManager;
     
-    public ClientControlador() {
-        entityManager = EMController.obtenerEntityManager();
+    public ClientControlador(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
     
     public boolean insertarClient(Client client) {
