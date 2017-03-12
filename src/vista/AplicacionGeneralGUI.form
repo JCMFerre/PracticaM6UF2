@@ -52,20 +52,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="anyFabricacioTextField" pref="130" max="32767" attributes="0"/>
-                              <Component id="matriculaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="matriculaVehicleTextField" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="anyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="propietariLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="matriculaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="anyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="anyFabricacioTextField" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="matriculaVehicleTextField" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" pref="26" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="marcaModelLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="marcaModelTextField" max="32767" attributes="0"/>
-                          <Component id="comboBoxClients" alignment="0" pref="220" max="32767" attributes="0"/>
+                          <Component id="propietariLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxClients" pref="221" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -134,6 +132,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="actualizarComboBox"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -196,7 +197,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="consultaClientTextField" min="-2" pref="290" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buscarClientButton" pref="79" max="32767" attributes="0"/>
+                              <Component id="buscarClientButton" pref="80" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -339,7 +340,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="396" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

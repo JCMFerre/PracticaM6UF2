@@ -1,13 +1,12 @@
 package controlador;
 
 import javax.persistence.EntityManager;
+import model.Polissa;
 
-public class PolissaControlador {
-
-    private final EntityManager entityManager;
+public class PolissaControlador extends ControladorGeneral<Polissa> {
 
     public PolissaControlador(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager);
     }
 
 }

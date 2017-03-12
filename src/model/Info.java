@@ -17,6 +17,8 @@ public final class Info {
     public static final String NOMBRE_QUERY_CLIENT_BUSCAR = "buscarClientPerNom";
     public static final String QUERY_CLIENT_NOMBRE = "SELECT c FROM Client c WHERE c.nom=:nom";
     public static final String PARAMETRO_QUERY_CLIENT_NOMBRE = "nom";
+    public static final String QUERY_TODOS_LOS_CLIENTES = "todosLosClientes";
+    public static final String QUERY_CLIENT_TODOS = "SELECT c FROM Client c";
 
     public static final String ADRECA_KEY_CARRER = "CARRER_ADRECA";
     public static final String ADRECA_KEY_NUMERO = "NUMERO_ADRECA";

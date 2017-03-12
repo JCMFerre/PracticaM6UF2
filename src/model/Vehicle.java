@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = Info.TAULA_VEHICLE, indexes = {
-    @Index(columnList = "matricula", name = Info.INDEX_MATRICULA_VEHICLE)})
+    @Index(columnList = Info.VEHICLE_KEY_MATRICULA, name = Info.INDEX_MATRICULA_VEHICLE)})
 public class Vehicle implements Serializable {
 
     @Transient
@@ -35,7 +35,7 @@ public class Vehicle implements Serializable {
     private int anyFabricacio;
 
     @ManyToOne
-    @JoinColumn(name = Info.VEHICLE_KEY_PROPIETARI)
+    @JoinColumn(name = Info.CLIENT_KEY_ID)
     private Client propietari;
 
     public Vehicle(Long id, String matricula, String marcaModel, int anyFabricacio, Client propietari) {

@@ -8,13 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@NamedQuery(name = Info.NOMBRE_QUERY_CLIENT_BUSCAR, query = Info.QUERY_CLIENT_NOMBRE)
+@NamedQueries({
+    @NamedQuery(name = Info.NOMBRE_QUERY_CLIENT_BUSCAR, query = Info.QUERY_CLIENT_NOMBRE)
+    ,@NamedQuery(name = Info.QUERY_TODOS_LOS_CLIENTES, query = Info.QUERY_CLIENT_TODOS)}
+)
 @Table(name = Info.TAULA_CLIENT)
 public class Client implements Serializable {
 

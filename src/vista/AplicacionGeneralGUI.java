@@ -2,6 +2,7 @@ package vista;
 
 import controlador.ClientControlador;
 import controlador.EMController;
+import controlador.VehicleControlador;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultComboBoxModel;
@@ -12,6 +13,7 @@ import model.Client;
 public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
     private final ClientControlador clientControlador;
+    private final VehicleControlador vehicleControlador;
     private Client clientBuscado;
 
     public AplicacionGeneralGUI(boolean externa) {
@@ -19,6 +21,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         EntityManager entityManager = EMController.obtenerEntityManager(externa);
         clientControlador = new ClientControlador(entityManager);
+        vehicleControlador = new VehicleControlador(entityManager);
     }
 
     /**
@@ -72,6 +75,15 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         propietariLabel.setText("Propietari (Client)");
 
         comboBoxClients.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un client" }));
+        comboBoxClients.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                actualizarComboBox(evt);
+            }
+        });
 
         javax.swing.GroupLayout vehiclesPanelLayout = new javax.swing.GroupLayout(vehiclesPanel);
         vehiclesPanel.setLayout(vehiclesPanelLayout);
@@ -79,18 +91,17 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vehiclesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                        .addComponent(matriculaLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(matriculaVehicleTextField))
-                    .addComponent(anyLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(propietariLabel)
+                    .addComponent(matriculaLabel)
+                    .addComponent(anyLabel)
+                    .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                    .addComponent(matriculaVehicleTextField))
+                .addGap(18, 26, Short.MAX_VALUE)
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(marcaModelLabel)
                     .addComponent(marcaModelTextField)
-                    .addComponent(comboBoxClients, 0, 220, Short.MAX_VALUE))
+                    .addComponent(propietariLabel)
+                    .addComponent(comboBoxClients, 0, 221, Short.MAX_VALUE))
                 .addContainerGap())
         );
         vehiclesPanelLayout.setVerticalGroup(
@@ -193,7 +204,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                     .addGroup(clientsPanelLayout.createSequentialGroup()
                         .addComponent(consultaClientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)))
+                        .addComponent(buscarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         clientsPanelLayout.setVerticalGroup(
@@ -239,7 +250,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         polissesPanel.setLayout(polissesPanelLayout);
         polissesPanelLayout.setHorizontalGroup(
             polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
         polissesPanelLayout.setVerticalGroup(
             polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,14 +276,14 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private void registrarClient(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarClient
         if (clientBuscado == null) {
             if (comprobarCampos()) {
-                boolean insertado = clientControlador.insertarClient(obtenerClientDeGUI());
+                boolean insertado = clientControlador.insertar(obtenerClientDeGUI());
                 lanzarMensaje(!insertado, insertado ? "Client inserit correctament."
                         : "No s'ha inserit correctament el client, pot ser pel NIF (Repetit).");
             } else {
                 lanzarMensaje(true, "Comprova que cap camp esta vuit.");
             }
         } else {
-            boolean borrado = clientControlador.eliminarClient(clientBuscado);
+            boolean borrado = clientControlador.eliminar(clientBuscado);
             lanzarMensaje(!borrado, borrado ? "Client eliminat correctament." : "No s'ha pogut eliminar el client.");
             limpiarCamposClients(null);
         }
@@ -328,6 +339,10 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscarClientPorNombre
 
+    private void actualizarComboBox(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_actualizarComboBox
+        cargarComboClientes(vehicleControlador.obtenerTodosLosClientes());
+    }//GEN-LAST:event_actualizarComboBox
+
     private boolean comprobarCampos() {
         return true;
     }
@@ -349,7 +364,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
     private void cargarComboClientes(List<Client> clientes) {
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
-        
+        comboBoxClients.setModel(comboBoxModel);
+        comboBoxModel.addElement("Selecciona un client");
+        for (Client cliente : clientes) {
+            comboBoxModel.addElement(cliente.getId() + " - " + cliente.getNif() + " - " + cliente.getNom());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
