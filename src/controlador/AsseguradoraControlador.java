@@ -1,13 +1,12 @@
 package controlador;
 
 import javax.persistence.EntityManager;
+import model.Asseguradora;
 
-public class AsseguradoraControlador {
-
-    private final EntityManager entityManager;
+public class AsseguradoraControlador extends ControladorGenerico<Asseguradora> {
 
     public AsseguradoraControlador(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager);
     }
 
 }

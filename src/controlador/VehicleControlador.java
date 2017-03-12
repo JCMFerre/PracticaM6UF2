@@ -6,7 +6,7 @@ import model.Client;
 import model.Info;
 import model.Vehicle;
 
-public class VehicleControlador extends ControladorGeneral<Vehicle> {
+public class VehicleControlador extends ControladorGenerico<Vehicle> {
 
     public VehicleControlador(EntityManager entityManager) {
         super(entityManager);

@@ -3,11 +3,11 @@ package controlador;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public class ControladorGeneral<E> {
+public class ControladorGenerico<E> {
 
     private final EntityManager entityManager;
 
-    public ControladorGeneral(EntityManager entityManager) {
+    public ControladorGenerico(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

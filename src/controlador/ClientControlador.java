@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import model.Client;
 import model.Info;
 
-public class ClientControlador extends ControladorGeneral<Client> {
+public class ClientControlador extends ControladorGenerico<Client> {
 
     public ClientControlador(EntityManager entityManager) {
         super(entityManager);
@@ -18,7 +18,7 @@ public class ClientControlador extends ControladorGeneral<Client> {
                     .getResultList().get(0);
         } catch (IndexOutOfBoundsException e) {
             client = null;
-            System.out.println("Entro catch en la de obtener nombre");
+            System.out.println("Entro catch en la de obtener nombre, no hay elementos en la lista.");
         }
         return client;
     }
