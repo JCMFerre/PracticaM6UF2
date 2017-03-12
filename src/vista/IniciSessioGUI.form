@@ -58,10 +58,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="usuariTextField" max="32767" attributes="0"/>
+                  <Component id="usuariTextField" alignment="0" max="32767" attributes="0"/>
                   <Component id="contrasenaPasswordField" alignment="0" max="32767" attributes="0"/>
                   <Component id="usuariLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="contrasenaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -116,7 +116,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="iniciarSessioButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Inciar sessi&#xf3;"/>
+        <Property name="text" type="java.lang.String" value="Iniciar sessi&#xf3;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iniciarSessio"/>
@@ -127,7 +127,7 @@
         <Property name="text" type="java.lang.String" value="Netejar camps"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="netejarCamps"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="netejaCamps"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="registrarUsuariButton">

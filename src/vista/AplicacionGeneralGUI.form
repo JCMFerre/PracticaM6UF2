@@ -50,30 +50,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="246" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="163" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tab vehicle"/>
-              </Properties>
-            </Component>
-          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="clientsPanel">
           <Constraints>
@@ -87,28 +72,178 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="249" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="registrarClientButton" max="32767" attributes="0"/>
+                                  <Component id="nifLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nifTextField" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="nomLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nomTextField" alignment="1" pref="130" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="carrerLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="direccioLabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="carrerTextField" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="poblacioTextField" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
+                                          <Component id="labelPoblacio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="numeroLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="numeroTextField" min="-2" pref="55" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="netejarCampsClientButton" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="accionsLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buscarClientLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="consultaClientTextField" min="-2" pref="290" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buscarClientButton" pref="79" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="163" max="32767" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nifLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="direccioLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="carrerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nifTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="carrerTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nomLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPoblacio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numeroLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nomTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="poblacioTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numeroTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="accionsLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="registrarClientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="netejarCampsClientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="buscarClientLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="consultaClientTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarClientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="nifLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tab clients"/>
+                <Property name="text" type="java.lang.String" value="NIF"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="nifTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="nomLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="nomTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="direccioLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Direcci&#xf3;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="carrerTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="carrerLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Carrer"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelPoblacio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Poblaci&#xf3;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="poblacioTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="numeroTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="numeroLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="accionsLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Accions"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="registrarClientButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar client"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarClient"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="netejarCampsClientButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Netejar camps"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpiarCamposClients"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="buscarClientLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar client per nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="consultaClientTextField">
+            </Component>
+            <Component class="javax.swing.JButton" name="buscarClientButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarClientPorNombre"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -124,30 +259,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="242" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="163" max="32767" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tab p&#xf2;lisses"/>
-              </Properties>
-            </Component>
-          </SubComponents>
         </Container>
       </SubComponents>
     </Container>
