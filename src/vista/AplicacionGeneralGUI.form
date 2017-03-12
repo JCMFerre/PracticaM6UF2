@@ -50,15 +50,95 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="anyFabricacioTextField" pref="130" max="32767" attributes="0"/>
+                              <Component id="matriculaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="matriculaVehicleTextField" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="anyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="propietariLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="marcaModelLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="marcaModelTextField" max="32767" attributes="0"/>
+                          <Component id="comboBoxClients" alignment="0" pref="220" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="matriculaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="marcaModelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="matriculaVehicleTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="marcaModelTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="anyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="propietariLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="anyFabricacioTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxClients" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="133" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="matriculaLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Matricula"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="matriculaVehicleTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="marcaModelLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Marca | Model"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="marcaModelTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="anyLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Any fabricaci&#xf3;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="anyFabricacioTextField">
+            </Component>
+            <Component class="javax.swing.JLabel" name="propietariLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Propietari (Client)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboBoxClients">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="Selecciona un client"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="clientsPanel">
           <Constraints>
@@ -79,9 +159,9 @@
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="registrarClientButton" max="32767" attributes="0"/>
                                   <Component id="nifLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nifTextField" alignment="1" max="32767" attributes="0"/>
                                   <Component id="nomLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="nomTextField" alignment="1" pref="130" max="32767" attributes="0"/>
+                                  <Component id="nifTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">

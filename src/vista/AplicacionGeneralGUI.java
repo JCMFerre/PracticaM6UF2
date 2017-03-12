@@ -2,7 +2,9 @@ package vista;
 
 import controlador.ClientControlador;
 import controlador.EMController;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.Adreca;
 import model.Client;
@@ -30,6 +32,14 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         panelPestanas = new javax.swing.JTabbedPane();
         vehiclesPanel = new javax.swing.JPanel();
+        matriculaLabel = new javax.swing.JLabel();
+        matriculaVehicleTextField = new javax.swing.JTextField();
+        marcaModelLabel = new javax.swing.JLabel();
+        marcaModelTextField = new javax.swing.JTextField();
+        anyLabel = new javax.swing.JLabel();
+        anyFabricacioTextField = new javax.swing.JTextField();
+        propietariLabel = new javax.swing.JLabel();
+        comboBoxClients = new javax.swing.JComboBox<>();
         clientsPanel = new javax.swing.JPanel();
         nifLabel = new javax.swing.JLabel();
         nifTextField = new javax.swing.JTextField();
@@ -53,15 +63,56 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        matriculaLabel.setText("Matricula");
+
+        marcaModelLabel.setText("Marca | Model");
+
+        anyLabel.setText("Any fabricació");
+
+        propietariLabel.setText("Propietari (Client)");
+
+        comboBoxClients.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un client" }));
+
         javax.swing.GroupLayout vehiclesPanelLayout = new javax.swing.GroupLayout(vehiclesPanel);
         vehiclesPanel.setLayout(vehiclesPanelLayout);
         vehiclesPanelLayout.setHorizontalGroup(
             vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addComponent(matriculaLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(matriculaVehicleTextField))
+                    .addComponent(anyLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(propietariLabel)
+                    .addComponent(marcaModelLabel)
+                    .addComponent(marcaModelTextField)
+                    .addComponent(comboBoxClients, 0, 220, Short.MAX_VALUE))
+                .addContainerGap())
         );
         vehiclesPanelLayout.setVerticalGroup(
             vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
+            .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(matriculaLabel)
+                    .addComponent(marcaModelLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(matriculaVehicleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(marcaModelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(anyLabel)
+                    .addComponent(propietariLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         panelPestanas.addTab("Vehicle", vehiclesPanel);
@@ -114,9 +165,9 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                         .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(registrarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nifLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nifTextField)
                             .addComponent(nomLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                            .addComponent(nomTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(nifTextField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(25, 25, 25)
                         .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(clientsPanelLayout.createSequentialGroup()
@@ -296,16 +347,28 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         registrarClientButton.setText("Eliminar client");
     }
 
+    private void cargarComboClientes(List<Client> clientes) {
+        DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
+        
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accionsLabel;
+    private javax.swing.JTextField anyFabricacioTextField;
+    private javax.swing.JLabel anyLabel;
     private javax.swing.JButton buscarClientButton;
     private javax.swing.JLabel buscarClientLabel;
     private javax.swing.JLabel carrerLabel;
     private javax.swing.JTextField carrerTextField;
     private javax.swing.JPanel clientsPanel;
+    private javax.swing.JComboBox<String> comboBoxClients;
     private javax.swing.JTextField consultaClientTextField;
     private javax.swing.JLabel direccioLabel;
     private javax.swing.JLabel labelPoblacio;
+    private javax.swing.JLabel marcaModelLabel;
+    private javax.swing.JTextField marcaModelTextField;
+    private javax.swing.JLabel matriculaLabel;
+    private javax.swing.JTextField matriculaVehicleTextField;
     private javax.swing.JButton netejarCampsClientButton;
     private javax.swing.JLabel nifLabel;
     private javax.swing.JTextField nifTextField;
@@ -316,6 +379,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane panelPestanas;
     private javax.swing.JTextField poblacioTextField;
     private javax.swing.JPanel polissesPanel;
+    private javax.swing.JLabel propietariLabel;
     private javax.swing.JButton registrarClientButton;
     private javax.swing.JPanel vehiclesPanel;
     // End of variables declaration//GEN-END:variables
