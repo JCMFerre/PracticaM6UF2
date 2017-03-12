@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import model.Client;
 import model.Info;
-import org.hibernate.exception.ConstraintViolationException;
 
 public class ClientControlador {
 
@@ -15,22 +14,39 @@ public class ClientControlador {
     }
 
     public boolean insertarClient(Client client) {
-        return executarTransaccio(true, client);
+        return executarTransaccio(0, client);
     }
 
     public boolean eliminarClient(Client client) {
-        return executarTransaccio(false, client);
+        return executarTransaccio(1, client);
     }
 
-    private boolean executarTransaccio(boolean insertar, Client client) {
+    public boolean modificarClient(Client client) {
+        return executarTransaccio(2, client);
+    }
+
+    /**
+     * Realitza la transacció depenent la acció que s'ha indicat.
+     *
+     * @param accio 0 inserta, 1 elimina, 2 o altres modifica.
+     * @param client Client a inserir, modificar o eliminar.
+     * @return true si s'ha executat correctament o false en cas contrari.
+     */
+    private boolean executarTransaccio(int accio, Client client) {
         boolean correcto = true;
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         try {
-            if (insertar) {
-                entityManager.persist(client);
-            } else {
-                entityManager.remove(client);
+            switch (accio) {
+                case 0:
+                    entityManager.persist(client);
+                    break;
+                case 1:
+                    entityManager.remove(client);
+                    break;
+                default:
+                    entityManager.merge(client);
+                    break;
             }
             entityTransaction.commit();
         } catch (Exception contraintViolada) {

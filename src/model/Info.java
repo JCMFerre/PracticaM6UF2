@@ -22,4 +22,17 @@ public final class Info {
     public static final String ADRECA_KEY_NUMERO = "NUMERO_ADRECA";
     public static final String ADRECA_KEY_POBLACIO = "POBLACIO_ADRECA";
 
+    public static final String TAULA_VEHICLE = "VEHICLES";
+    public static final String VEHICLE_KEY_ID = "ID_VEHICLE";
+    public static final String VEHICLE_KEY_MATRICULA = "MATRICULA_VEHICLE";
+    public static final String VEHICLE_KEY_MARCA_MODEL = "MARCA_MODEL_VEHICLE";
+    public static final String VEHICLE_KEY_ANY_FABRICACIO = "ANY_FABRICACIO_VEHICLE";
+    public static final String VEHICLE_KEY_PROPIETARI = "PROPIETARI_VEHICLE";
+    public static final String INDEX_MATRICULA_VEHICLE = "INDEX_MATRICULA";
+
+    public static final String TAULA_ASSEGURADORA = "M6_UF2_ASSEGURADORES";
+    public static final String ASSEGURADORA_KEY_ID = "ID_ASSEGURADORA";
+    public static final String ASSEGURADORA_KEY_CIF = "CIF_ASSEGURADORA";
+    public static final String ASSEGURADORA_KEY_NOM = "NOM_ASSEGURADORA";
+
 }

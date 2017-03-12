@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -32,6 +34,9 @@ public class Client implements Serializable {
 
     @Embedded
     private Adreca adreca;
+
+    @OneToMany(mappedBy = "propietari")
+    private List<Vehicle> llistaVehicles;
 
     public Client(Long id, String nif, String nom, Adreca adreca) {
         this.id = id;
@@ -73,6 +78,14 @@ public class Client implements Serializable {
 
     public void setAdreca(Adreca adreca) {
         this.adreca = adreca;
+    }
+
+    public List<Vehicle> getLlistaVehicles() {
+        return llistaVehicles;
+    }
+
+    public void setLlistaVehicles(List<Vehicle> llistaVehicles) {
+        this.llistaVehicles = llistaVehicles;
     }
 
     @Override
