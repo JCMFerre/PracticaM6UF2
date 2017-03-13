@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@NamedQuery(name = Info.NOMBRE_QUERY_VEHICLE_BUSCAR, query = Info.QUERY_VEHICLE_MATRICULA)
 @Table(name = Info.TAULA_VEHICLE, indexes = {
     @Index(columnList = Info.VEHICLE_KEY_MATRICULA, name = Info.INDEX_MATRICULA_VEHICLE)})
 public class Vehicle implements Serializable {

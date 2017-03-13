@@ -31,6 +31,9 @@ public final class Info {
     public static final String VEHICLE_KEY_ANY_FABRICACIO = "ANY_FABRICACIO_VEHICLE";
     public static final String VEHICLE_KEY_PROPIETARI = "PROPIETARI_VEHICLE";
     public static final String INDEX_MATRICULA_VEHICLE = "INDEX_MATRICULA";
+    public static final String NOMBRE_QUERY_VEHICLE_BUSCAR = "buscarVehiclePerMatricula";
+    public static final String QUERY_VEHICLE_MATRICULA = "SELECT v FROM Vehicle v WHERE v.matricula=:matricula";
+    public static final String PARAMETRO_QUERY_VEHICLE_MATRICULA = "matricula";
 
     public static final String TAULA_ASSEGURADORA = "M6_UF2_ASSEGURADORES";
     public static final String ASSEGURADORA_KEY_ID = "ID_ASSEGURADORA";

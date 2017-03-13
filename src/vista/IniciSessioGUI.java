@@ -169,6 +169,9 @@ public class IniciSessioGUI extends javax.swing.JFrame {
         lanzarMensajeEmergente(!insertadoCorrectamente, insertadoCorrectamente
                 ? "Usuari inserit correctament."
                 : "No s'ha pogut inserir l'usuari, ja existeix un usuari amb aquest nom.");
+        if (insertadoCorrectamente) {
+            netejaCamps(null);
+        }
     }
 
     private boolean cambiarEntity() {
