@@ -3,9 +3,14 @@ package vista;
 import controlador.AsseguradoraControlador;
 import controlador.ClientControlador;
 import controlador.EMController;
+import controlador.PolissaControlador;
 import controlador.VehicleControlador;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -13,31 +18,39 @@ import javax.swing.table.DefaultTableModel;
 import model.Adreca;
 import model.Asseguradora;
 import model.Client;
+import model.Polissa;
 import model.Vehicle;
 
 public class AplicacionGeneralGUI extends javax.swing.JFrame {
-    
+
     private final Object[] COLUMNAS_TABLA_CLIENTES;
     private final Object[] COLUMNAS_TABLA_VEHICULOS;
     private final Object[] COLUMNAS_TABLA_ASSEGURADORAS;
-    
+    private final Object[] COLUMNAS_TABLA_POLISSA;
+
     private final ClientControlador clientControlador;
     private final VehicleControlador vehicleControlador;
     private final AsseguradoraControlador asseguradoraControlador;
+    private final PolissaControlador polissaControlador;
+
     private Client clientBuscado;
     private Vehicle vehicleBuscado;
     private Asseguradora asseguradoraBuscada;
-    
+    private Polissa polissaBuscada;
+
     public AplicacionGeneralGUI(boolean externa) {
         this.COLUMNAS_TABLA_CLIENTES = new Object[]{"ID", "NIF", "Nom", "Carrer", "Població", "Número"};
         this.COLUMNAS_TABLA_VEHICULOS = new Object[]{"ID", "Matrícula", "Marca | Model", "Any fabricació", "Propietari"};
         this.COLUMNAS_TABLA_ASSEGURADORAS = new Object[]{"ID", "Nom", "NIF o CIF"};
+        this.COLUMNAS_TABLA_POLISSA = new Object[]{"ID", "Número", "Prenedor", "Vehicle", "Data inici", "Data fi", "Import",
+            "Tipus", "Asseguradora"};
         initComponents();
         setLocationRelativeTo(null);
         EntityManager entityManager = EMController.obtenerEntityManager(externa);
         clientControlador = new ClientControlador(entityManager);
         vehicleControlador = new VehicleControlador(entityManager);
         asseguradoraControlador = new AsseguradoraControlador(entityManager);
+        polissaControlador = new PolissaControlador(entityManager);
     }
 
     /**
@@ -656,6 +669,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         accionsPolissaLabel.setText("Accions");
 
         registrarPolissaButton.setText("Registrar polissa");
+        registrarPolissaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarPolissaEvent(evt);
+            }
+        });
 
         netejarCampsPolissaButton.setText("Netejar camps");
         netejarCampsPolissaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -679,6 +697,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         campCercaLabel.setText("Camp de cerca");
 
         cercaPerTipusPolissaButton.setText("Cerca");
+        cercaPerTipusPolissaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cercarPerTipusPolissaEvent(evt);
+            }
+        });
 
         polissaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -882,11 +905,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         clientBuscado = null;
         ponerFocoClientes(false);
     }//GEN-LAST:event_limpiarCamposClients
-    
+
     private void ponerFocoClientes(boolean ponerFocoEnBusqueda) {
         (ponerFocoEnBusqueda ? consultaClientTextField : nifTextField).requestFocus();
     }
-    
+
     private Client obtenerClientDeGUI() {
         Client clientObtingutGUI = new Client();
         clientObtingutGUI.setNif(nifTextField.getText());
@@ -894,7 +917,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         clientObtingutGUI.setAdreca(obtenerAdrecaDeGUI());
         return clientObtingutGUI;
     }
-    
+
     private Adreca obtenerAdrecaDeGUI() {
         return new Adreca(carrerTextField.getText(),
                 Integer.parseInt(numeroTextField.getText()),
@@ -916,7 +939,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_buscarClientPorNombre
-    
+
     private void ponerCamposClienteGUI(Client cliente) {
         nifTextField.setText(cliente.getNif());
         nomTextField.setText(cliente.getNom());
@@ -926,7 +949,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         poblacioTextField.setText(adreca.getPoblacio());
         registrarClientButton.setText("Eliminar client");
     }
-    
+
     private boolean comprobarCamposClients() {
         return true;
     }
@@ -955,7 +978,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             netejarCampsVehicle(null);
         }
     }//GEN-LAST:event_registrarVehicle
-    
+
     private Vehicle obtenerVehicleGUI() {
         Vehicle vehicle = new Vehicle();
         vehicle.setMatricula(matriculaVehicleTextField.getText().toUpperCase());
@@ -964,7 +987,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         vehicle.setPropietari(obtenerClienteParseandoComboBox());
         return vehicle;
     }
-    
+
     private Client obtenerClienteParseandoComboBox() {
         long idClient = Long.parseLong(comboBoxClients.getSelectedItem().toString().split("\\s-\\s")[0]);
         return vehicleControlador.obtenerClientePorId(idClient);
@@ -980,7 +1003,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         vehicleBuscado = null;
         ponerFocoVehiculos(false);
     }//GEN-LAST:event_netejarCampsVehicle
-    
+
     private void ponerFocoVehiculos(boolean ponerFocoEnBusqueda) {
         (ponerFocoEnBusqueda ? consultaVehicleTextField : matriculaVehicleTextField).requestFocus();
     }
@@ -1082,11 +1105,90 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         radioATercers.setSelected(true);
         ponerFocoPolissa(false);
     }//GEN-LAST:event_netejasCampsPolissaEvent
-    
+
+    private void cercarPerTipusPolissaEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercarPerTipusPolissaEvent
+        if (rbTotesPolissa.isSelected()) {
+            cargarListaEnTablaPolizas(polissaControlador.obtenerTodasLasPolizas());
+        } else {
+
+        }
+    }//GEN-LAST:event_cercarPerTipusPolissaEvent
+
+    private void registrarPolissaEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPolissaEvent
+        if (polissaBuscada == null) {
+            if (comprovarCampsPolissa()) {
+                boolean insertado = polissaControlador.insertar(obtenerPolissaGUI());
+                lanzarMensaje(!insertado, insertado ? "Polissa inserida correctament."
+                        : "No s'ha inserit correctament la Polissa, potser pel número (Repetit).");
+                if (insertado) {
+                    netejasCampsPolissaEvent(null);
+                }
+            } else {
+                lanzarMensaje(true, "Comprova que cap camp està vuit i amb el seu format (números, etc.).");
+            }
+        } else {
+            boolean borrado = polissaControlador.eliminar(polissaBuscada);
+            lanzarMensaje(!borrado, borrado ? "Polissa eliminada correctament." : "No s'ha pogut eliminar la Polissa (pot ser per les relacions entre taules).");
+            netejasCampsPolissaEvent(null);
+        }
+    }//GEN-LAST:event_registrarPolissaEvent
+
+    private boolean comprovarCampsPolissa() {
+        return true;
+    }
+
+    private Polissa obtenerPolissaGUI() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Polissa polissa = new Polissa();
+        polissa.setNumero(numeroPolissaTextField.getText());
+        try {
+            polissa.setDataInici(sdf.parse(dataIniciPolissaTextField.getText()));
+            polissa.setDataFi(sdf.parse(dataFiPolissaTextField.getText()));
+        } catch (ParseException ex) {
+            System.out.println("Error al parsear las fechas, esto ya esta validado en comprovarCampsPolissa");
+        }
+        polissa.setPrenedor(clientControlador.obtenerPorId(Client.class, obtenerIdClientComboPolissa()));
+        polissa.setVehicle(vehicleControlador.obtenerPorId(Vehicle.class, obtenerIdVehicleComboPolissa()));
+        polissa.setAsseguradora(asseguradoraControlador.obtenerPorId(Asseguradora.class, obtenerIdAsseguradoraComboPolissa()));
+        polissa.setTipus(radioATercers.isSelected());
+        polissa.setPrima(Double.parseDouble(importPolissaTextField.getText()));
+        return polissa;
+    }
+
+    private long obtenerIdClientComboPolissa() {
+        return Long.parseLong(comboBoxClientsPolissa.getSelectedItem().toString().split("\\s-\\s")[0]);
+    }
+
+    private long obtenerIdAsseguradoraComboPolissa() {
+        return Long.parseLong(comboBoxAsseguradoresPolissa.getSelectedItem().toString().split("\\s-\\s")[0]);
+    }
+
+    private long obtenerIdVehicleComboPolissa() {
+        return Long.parseLong(comboBoxVehiclePolissa.getSelectedItem().toString().split("\\s-\\s")[0]);
+    }
+
+    private void cargarListaEnTablaPolizas(List<Polissa> polizas) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_POLISSA, 0);
+        polissaTable.setModel(dtm);
+        for (Polissa polissa : polizas) {
+            dtm.addRow(new Object[]{polissa.getId(), polissa.getNumero(), polissa.getPrenedor().getNom() + " ("
+                + polissa.getPrenedor().getId() + ")", polissa.getVehicle().getMatricula() + " ("
+                + polissa.getVehicle().getId() + ")", sdf.format(polissa.getDataInici()),
+                sdf.format(polissa.getDataFi()), polissa.getPrima(),
+                polissa.isTipus() ? "TERCERS" : "TOT RISC", polissa.getAsseguradora().getNom() + " ("
+                + polissa.getId() + ")"});
+        }
+        if (polizas.isEmpty()) {
+            lanzarMensaje(false, "No hi ha cap polissa.");
+        }
+
+    }
+
     private void ponerFocoPolissa(boolean ponerFocoBusqueda) {
         (ponerFocoBusqueda ? cercarPolissaTextField : numeroPolissaTextField).requestFocus();
     }
-    
+
     private void cargarListaComboClientesPolissa(List<Client> clientes, boolean llamadoDesdePonerCampos) {
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
         comboBoxClientsPolissa.setModel(comboBoxModel);
@@ -1098,7 +1200,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             comboBoxClientsPolissa.setSelectedIndex(1);
         }
     }
-    
+
     private void cargarListaComboVehiclesPolissa(List<Vehicle> vehicles, boolean llamadoDesdePonerCampos) {
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
         comboBoxVehiclePolissa.setModel(comboBoxModel);
@@ -1110,7 +1212,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             comboBoxVehiclePolissa.setSelectedIndex(1);
         }
     }
-    
+
     private void cargarListaComboAsseguradorasPolissa(List<Asseguradora> asseguradoras, boolean llamadoDesdePonerCampos) {
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
         comboBoxAsseguradoresPolissa.setModel(comboBoxModel);
@@ -1122,11 +1224,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             comboBoxAsseguradoresPolissa.setSelectedIndex(1);
         }
     }
-    
+
     private boolean comprovarCampsAsseguradora() {
         return true;
     }
-    
+
     private void cargarTodosLosVehiculosTabla(List<Vehicle> vehicles) {
         DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_VEHICULOS, 0);
         vehiclesTable.setModel(dtm);
@@ -1139,7 +1241,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             lanzarMensaje(false, "No hi ha cap vehicle.");
         }
     }
-    
+
     private void cargarTodosLosClientesTabla(List<Client> clientes) {
         DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_CLIENTES, 0);
         clientsTable.setModel(dtm);
@@ -1152,11 +1254,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             lanzarMensaje(false, "No hi ha cap client.");
         }
     }
-    
+
     private boolean comprobarCamposVehiculo() {
         return true;
     }
-    
+
     private void ponerCamposVehiculo(Vehicle vehicle) {
         matriculaVehicleTextField.setText(vehicle.getMatricula());
         marcaModelTextField.setText(vehicle.getMarcaModel());
@@ -1164,7 +1266,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         cargarComboClientes(Arrays.asList(vehicle.getPropietari()), true);
         registrarVehicleButton.setText("Eliminar vehicle");
     }
-    
+
     private void cargarComboClientes(List<Client> clientes, boolean llamadoDesdePonerCampos) {
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
         comboBoxClients.setModel(comboBoxModel);
@@ -1184,7 +1286,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         cifAsseguradoraTextField.setText(asseguradora.getCif());
         registrarAsseguradoraButton.setText("Eliminar asseguradora");
     }
-    
+
     private void cargarTodosLasAsseguradorasTabla(List<Asseguradora> listaAsseguradoras) {
         DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_ASSEGURADORAS, 0);
         asseguradoraTable.setModel(dtm);
@@ -1195,14 +1297,14 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             lanzarMensaje(false, "No hi ha cap asseguradora.");
         }
     }
-    
+
     private Asseguradora obtenerAsseguradoraGUI() {
         Asseguradora asseguradora = new Asseguradora();
         asseguradora.setNom(nomAsseguradoraTextField.getText());
         asseguradora.setCif(cifAsseguradoraTextField.getText());
         return asseguradora;
     }
-    
+
     private void ponerFocoAsseguradora(boolean ponerFocoEnBusqueda) {
         (ponerFocoEnBusqueda ? consultaAsseguradoraPerNom : nomAsseguradoraTextField).requestFocus();
     }

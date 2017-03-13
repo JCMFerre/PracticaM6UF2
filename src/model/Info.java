@@ -53,6 +53,7 @@ public final class Info {
     public static final String POLISSA_KEY_TIPUS = "TIPUS_POLISSA";
     public static final String POLISSA_KEY_PRIMA = "PRIMA_POLISSA";
     public static final String INDEX_PRENEDOR_POLISSA = "INDEX_PRENEDOR";
+    public static final String QUERY_POLISSA_TODOS = "SELECT p FROM Polissa p";
 
     public static final String RELACION_VEHICLE_POLISSA = "VEHICLE";
     public static final String RELACIO_ASSEGURADORA_POLISSA = "ASSEGURADORA";

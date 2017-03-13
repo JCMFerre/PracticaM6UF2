@@ -58,4 +58,8 @@ public class ControladorGenerico<E> {
         return entityManager;
     }
 
+    public E obtenerPorId(Class<E> tipoClasse, Object id) {
+        return entityManager.find(tipoClasse, id);
+    }
+
 }
