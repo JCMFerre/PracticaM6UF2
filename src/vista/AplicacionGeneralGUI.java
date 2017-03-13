@@ -49,6 +49,8 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupTipus = new javax.swing.ButtonGroup();
+        buttonGroupCercaPolisses = new javax.swing.ButtonGroup();
         panelPestanas = new javax.swing.JTabbedPane();
         vehiclesPanel = new javax.swing.JPanel();
         matriculaLabel = new javax.swing.JLabel();
@@ -92,6 +94,35 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         clientsTable = new javax.swing.JTable();
         consultaClientsButton = new javax.swing.JButton();
         polissesPanel = new javax.swing.JPanel();
+        numeroPolissaLabel = new javax.swing.JLabel();
+        numeroPolissaTextField = new javax.swing.JTextField();
+        comboBoxClientsPolissa = new javax.swing.JComboBox<>();
+        comboBoxVehiclePolissa = new javax.swing.JComboBox<>();
+        clientPolissaLabel = new javax.swing.JLabel();
+        vehiclePolissaLabel = new javax.swing.JLabel();
+        dataIniciPolissaLabel = new javax.swing.JLabel();
+        dataIniciPolissaTextField = new javax.swing.JTextField();
+        dataFiLabelPolissa = new javax.swing.JLabel();
+        dataFiPolissaTextField = new javax.swing.JTextField();
+        asseguradoraPolisaLabel = new javax.swing.JLabel();
+        comboBoxAsseguradoresPolissa = new javax.swing.JComboBox<>();
+        tipusPolissaLabel = new javax.swing.JLabel();
+        radioATercers = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        importPolissaLabel = new javax.swing.JLabel();
+        importPolissaTextField = new javax.swing.JTextField();
+        accionsPolissaLabel = new javax.swing.JLabel();
+        registrarPolissaButton = new javax.swing.JButton();
+        netejarCampsPolissaButton = new javax.swing.JButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        tipusCercaPolissaLabel = new javax.swing.JLabel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        campCercaLabel = new javax.swing.JLabel();
+        cercarPolissaTextField = new javax.swing.JTextField();
+        cercaPerTipusPolissaButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        polissaTable = new javax.swing.JTable();
         asseguradoraPanel = new javax.swing.JPanel();
         nomAsseguradoraLabel = new javax.swing.JLabel();
         nomAsseguradoraTextField = new javax.swing.JTextField();
@@ -149,7 +180,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar vehicle per matrícula");
 
-        buscarVehicleButton.setText("Buscar");
+        buscarVehicleButton.setText("Cercar");
         buscarVehicleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarVehiclePerMatricula(evt);
@@ -303,7 +334,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         buscarClientLabel.setText("Buscar client per nom");
 
-        buscarClientButton.setText("Buscar");
+        buscarClientButton.setText("Cercar");
         buscarClientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarClientPorNombre(evt);
@@ -336,12 +367,6 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(clientsTable);
-        if (clientsTable.getColumnModel().getColumnCount() > 0) {
-            clientsTable.getColumnModel().getColumn(3).setHeaderValue("Carrer");
-            clientsTable.getColumnModel().getColumn(4).setResizable(false);
-            clientsTable.getColumnModel().getColumn(4).setHeaderValue("Població");
-            clientsTable.getColumnModel().getColumn(5).setHeaderValue("Número");
-        }
 
         consultaClientsButton.setText("* Consultar tots els clients");
         consultaClientsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -442,15 +467,201 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         panelPestanas.addTab("Clients", clientsPanel);
 
+        numeroPolissaLabel.setText("Número");
+
+        comboBoxClientsPolissa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un client" }));
+
+        comboBoxVehiclePolissa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un vehicle" }));
+
+        clientPolissaLabel.setText("Client (Prenedor)");
+
+        vehiclePolissaLabel.setText("Vehicle");
+
+        dataIniciPolissaLabel.setText("Data inici (dd/mm/yyyy)");
+
+        dataFiLabelPolissa.setText("Data fi (dd/mm/yyyy)");
+
+        asseguradoraPolisaLabel.setText("Asseguradora");
+
+        comboBoxAsseguradoresPolissa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una aseguradora" }));
+
+        tipusPolissaLabel.setText("Tipus");
+
+        buttonGroupTipus.add(radioATercers);
+        radioATercers.setSelected(true);
+        radioATercers.setText("Tercers");
+
+        buttonGroupTipus.add(jRadioButton1);
+        jRadioButton1.setText("Tot risc");
+
+        importPolissaLabel.setText("Import de l'assegurança");
+
+        accionsPolissaLabel.setText("Accions");
+
+        registrarPolissaButton.setText("Registrar polissa");
+
+        netejarCampsPolissaButton.setText("Netejar camps");
+
+        buttonGroupCercaPolisses.add(jRadioButton2);
+        jRadioButton2.setText("ID Client");
+
+        tipusCercaPolissaLabel.setText("Tipus de cerca (Per ...)");
+
+        buttonGroupCercaPolisses.add(jRadioButton3);
+        jRadioButton3.setText("ID Vehicle");
+
+        buttonGroupCercaPolisses.add(jRadioButton4);
+        jRadioButton4.setSelected(true);
+        jRadioButton4.setText("Totes");
+
+        campCercaLabel.setText("Camp de cerca");
+
+        cercaPerTipusPolissaButton.setText("Cerca");
+
+        polissaTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Número", "Prenedor", "Vehicle", "Data inici", "Data fi", "Import", "Tipus", "Asseguradora"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(polissaTable);
+
         javax.swing.GroupLayout polissesPanelLayout = new javax.swing.GroupLayout(polissesPanel);
         polissesPanel.setLayout(polissesPanelLayout);
         polissesPanelLayout.setHorizontalGroup(
             polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, polissesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, polissesPanelLayout.createSequentialGroup()
+                        .addComponent(registrarPolissaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(netejarCampsPolissaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, polissesPanelLayout.createSequentialGroup()
+                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipusPolissaLabel)
+                            .addGroup(polissesPanelLayout.createSequentialGroup()
+                                .addComponent(radioATercers)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton1)))
+                        .addGap(18, 18, 18)
+                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxAsseguradoresPolissa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(polissesPanelLayout.createSequentialGroup()
+                                .addComponent(asseguradoraPolisaLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, polissesPanelLayout.createSequentialGroup()
+                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipusCercaPolissaLabel)
+                            .addGroup(polissesPanelLayout.createSequentialGroup()
+                                .addComponent(jRadioButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton4)))
+                        .addGap(32, 32, 32)
+                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campCercaLabel)
+                            .addGroup(polissesPanelLayout.createSequentialGroup()
+                                .addComponent(cercarPolissaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cercaPerTipusPolissaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, polissesPanelLayout.createSequentialGroup()
+                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(polissesPanelLayout.createSequentialGroup()
+                                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(dataIniciPolissaTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                        .addComponent(numeroPolissaTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(numeroPolissaLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(dataIniciPolissaLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(clientPolissaLabel)
+                                    .addComponent(dataFiLabelPolissa)
+                                    .addComponent(comboBoxClientsPolissa, 0, 148, Short.MAX_VALUE)
+                                    .addComponent(dataFiPolissaTextField))
+                                .addGap(18, 18, 18)
+                                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboBoxVehiclePolissa, 0, 169, Short.MAX_VALUE)
+                                    .addComponent(vehiclePolissaLabel)
+                                    .addComponent(importPolissaLabel)
+                                    .addComponent(importPolissaTextField)))
+                            .addComponent(accionsPolissaLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         polissesPanelLayout.setVerticalGroup(
             polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
+            .addGroup(polissesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroPolissaLabel)
+                    .addComponent(clientPolissaLabel)
+                    .addComponent(vehiclePolissaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroPolissaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxClientsPolissa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxVehiclePolissa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dataIniciPolissaLabel)
+                    .addComponent(dataFiLabelPolissa)
+                    .addComponent(importPolissaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dataIniciPolissaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataFiPolissaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importPolissaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipusPolissaLabel)
+                    .addComponent(asseguradoraPolisaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(radioATercers)
+                        .addComponent(jRadioButton1))
+                    .addComponent(comboBoxAsseguradoresPolissa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(accionsPolissaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarPolissaButton)
+                    .addComponent(netejarCampsPolissaButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipusCercaPolissaLabel)
+                    .addComponent(campCercaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4)
+                    .addComponent(cercarPolissaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cercaPerTipusPolissaButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         panelPestanas.addTab("Pòlisses", polissesPanel);
@@ -901,34 +1112,56 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accionsLabel;
     private javax.swing.JLabel accionsLabel1;
+    private javax.swing.JLabel accionsPolissaLabel;
     private javax.swing.JTextField anyFabricacioTextField;
     private javax.swing.JLabel anyLabel;
     private javax.swing.JPanel asseguradoraPanel;
+    private javax.swing.JLabel asseguradoraPolisaLabel;
     private javax.swing.JTable asseguradoraTable;
     private javax.swing.JButton buscarAsseguradoraButton;
     private javax.swing.JButton buscarClientButton;
     private javax.swing.JLabel buscarClientLabel;
     private javax.swing.JButton buscarVehicleButton;
+    private javax.swing.ButtonGroup buttonGroupCercaPolisses;
+    private javax.swing.ButtonGroup buttonGroupTipus;
+    private javax.swing.JLabel campCercaLabel;
     private javax.swing.JLabel carrerLabel;
     private javax.swing.JTextField carrerTextField;
+    private javax.swing.JButton cercaPerTipusPolissaButton;
+    private javax.swing.JTextField cercarPolissaTextField;
     private javax.swing.JLabel cifAsseguradoraLabel;
     private javax.swing.JTextField cifAsseguradoraTextField;
+    private javax.swing.JLabel clientPolissaLabel;
     private javax.swing.JPanel clientsPanel;
     private javax.swing.JTable clientsTable;
+    private javax.swing.JComboBox<String> comboBoxAsseguradoresPolissa;
     private javax.swing.JComboBox<String> comboBoxClients;
+    private javax.swing.JComboBox<String> comboBoxClientsPolissa;
+    private javax.swing.JComboBox<String> comboBoxVehiclePolissa;
     private javax.swing.JTextField consultaAsseguradoraPerNom;
     private javax.swing.JTextField consultaClientTextField;
     private javax.swing.JButton consultaClientsButton;
     private javax.swing.JTextField consultaVehicleTextField;
     private javax.swing.JButton consultaVehiclesButton;
     private javax.swing.JButton consultatAsseguradoresTotesButton;
+    private javax.swing.JLabel dataFiLabelPolissa;
+    private javax.swing.JTextField dataFiPolissaTextField;
+    private javax.swing.JLabel dataIniciPolissaLabel;
+    private javax.swing.JTextField dataIniciPolissaTextField;
     private javax.swing.JLabel direccioLabel;
+    private javax.swing.JLabel importPolissaLabel;
+    private javax.swing.JTextField importPolissaTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelInfoTable;
     private javax.swing.JLabel labelPoblacio;
     private javax.swing.JLabel marcaModelLabel;
@@ -937,6 +1170,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JTextField matriculaVehicleTextField;
     private javax.swing.JButton netejarCampsAsseguradoraButton;
     private javax.swing.JButton netejarCampsClientButton;
+    private javax.swing.JButton netejarCampsPolissaButton;
     private javax.swing.JButton netejarCampsVehicle;
     private javax.swing.JLabel nifLabel;
     private javax.swing.JTextField nifTextField;
@@ -945,15 +1179,23 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JLabel nomLabel;
     private javax.swing.JTextField nomTextField;
     private javax.swing.JLabel numeroLabel;
+    private javax.swing.JLabel numeroPolissaLabel;
+    private javax.swing.JTextField numeroPolissaTextField;
     private javax.swing.JTextField numeroTextField;
     private javax.swing.JTabbedPane panelPestanas;
     private javax.swing.JTextField poblacioTextField;
+    private javax.swing.JTable polissaTable;
     private javax.swing.JPanel polissesPanel;
     private javax.swing.JLabel propietariLabel;
+    private javax.swing.JRadioButton radioATercers;
     private javax.swing.JButton registrarAsseguradoraButton;
     private javax.swing.JButton registrarClientButton;
+    private javax.swing.JButton registrarPolissaButton;
     private javax.swing.JButton registrarVehicleButton;
+    private javax.swing.JLabel tipusCercaPolissaLabel;
+    private javax.swing.JLabel tipusPolissaLabel;
     private javax.swing.JLabel totsClientsLabel;
+    private javax.swing.JLabel vehiclePolissaLabel;
     private javax.swing.JPanel vehiclesPanel;
     private javax.swing.JTable vehiclesTable;
     private javax.swing.JLabel vehiclesTodosLabel;
