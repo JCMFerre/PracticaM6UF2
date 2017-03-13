@@ -40,5 +40,9 @@ public final class Info {
     public static final String ASSEGURADORA_KEY_ID = "ID_ASSEGURADORA";
     public static final String ASSEGURADORA_KEY_CIF = "CIF_ASSEGURADORA";
     public static final String ASSEGURADORA_KEY_NOM = "NOM_ASSEGURADORA";
+    public static final String NOMBRE_QUERY_ASSEGURADORA_PER_NOM = "buscarAsseguradoraPerNom";
+    public static final String QUERY_ASSEGURADORA_PER_NOM = "SELECT a FROM Asseguradora a WHERE a.nom=:nom";
+    public static final String PARAMETRO_QUERY_ASSEGURADORA_PER_NOM = "nom";
+    public static final String QUERY_ASSEGURADORA_TODOS = "SELECT a FROM Asseguradora a";
 
 }

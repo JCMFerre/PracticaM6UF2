@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.AsseguradoraControlador;
 import controlador.ClientControlador;
 import controlador.EMController;
 import controlador.VehicleControlador;
@@ -10,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Adreca;
+import model.Asseguradora;
 import model.Client;
 import model.Vehicle;
 
@@ -17,20 +19,25 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
     private final Object[] COLUMNAS_TABLA_CLIENTES;
     private final Object[] COLUMNAS_TABLA_VEHICULOS;
+    private final Object[] COLUMNAS_TABLA_ASSEGURADORAS;
 
     private final ClientControlador clientControlador;
     private final VehicleControlador vehicleControlador;
+    private final AsseguradoraControlador asseguradoraControlador;
     private Client clientBuscado;
     private Vehicle vehicleBuscado;
+    private Asseguradora asseguradoraBuscada;
 
     public AplicacionGeneralGUI(boolean externa) {
         this.COLUMNAS_TABLA_CLIENTES = new Object[]{"ID", "NIF", "Nom", "Carrer", "Població", "Número"};
         this.COLUMNAS_TABLA_VEHICULOS = new Object[]{"ID", "Matrícula", "Marca | Model", "Any fabricació", "Propietari"};
+        this.COLUMNAS_TABLA_ASSEGURADORAS = new Object[]{"ID", "Nom", "NIF o CIF"};
         initComponents();
         setLocationRelativeTo(null);
         EntityManager entityManager = EMController.obtenerEntityManager(externa);
         clientControlador = new ClientControlador(entityManager);
         vehicleControlador = new VehicleControlador(entityManager);
+        asseguradoraControlador = new AsseguradoraControlador(entityManager);
     }
 
     /**
@@ -85,6 +92,21 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         clientsTable = new javax.swing.JTable();
         consultaClientsButton = new javax.swing.JButton();
         polissesPanel = new javax.swing.JPanel();
+        asseguradoraPanel = new javax.swing.JPanel();
+        nomAsseguradoraLabel = new javax.swing.JLabel();
+        nomAsseguradoraTextField = new javax.swing.JTextField();
+        cifAsseguradoraLabel = new javax.swing.JLabel();
+        cifAsseguradoraTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        registrarAsseguradoraButton = new javax.swing.JButton();
+        netejarCampsAsseguradoraButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        consultaAsseguradoraPerNom = new javax.swing.JTextField();
+        buscarAsseguradoraButton = new javax.swing.JButton();
+        labelInfoTable = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        asseguradoraTable = new javax.swing.JTable();
+        consultatAsseguradoresTotesButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestió");
@@ -314,6 +336,12 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(clientsTable);
+        if (clientsTable.getColumnModel().getColumnCount() > 0) {
+            clientsTable.getColumnModel().getColumn(3).setHeaderValue("Carrer");
+            clientsTable.getColumnModel().getColumn(4).setResizable(false);
+            clientsTable.getColumnModel().getColumn(4).setHeaderValue("Població");
+            clientsTable.getColumnModel().getColumn(5).setHeaderValue("Número");
+        }
 
         consultaClientsButton.setText("* Consultar tots els clients");
         consultaClientsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -426,6 +454,136 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         );
 
         panelPestanas.addTab("Pòlisses", polissesPanel);
+
+        nomAsseguradoraLabel.setText("Nom");
+
+        cifAsseguradoraLabel.setText("NIF o CIF");
+
+        jLabel2.setText("Accions");
+
+        registrarAsseguradoraButton.setText("Registrar asseguradora");
+        registrarAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarAsseguradoraEvent(evt);
+            }
+        });
+
+        netejarCampsAsseguradoraButton.setText("Netejar camps");
+        netejarCampsAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                netejarCampsAsseguradoraButton(evt);
+            }
+        });
+
+        jLabel3.setText("Buscar asseguradora per nom");
+
+        buscarAsseguradoraButton.setText("Buscar");
+        buscarAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarAsseguraPorNombre(evt);
+            }
+        });
+
+        labelInfoTable.setText("Taula amb totes les asseguradores (*)");
+
+        asseguradoraTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nom", "NIF o CIF"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(asseguradoraTable);
+
+        consultatAsseguradoresTotesButton.setText("* Consultar totes les asseguradores");
+        consultatAsseguradoresTotesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarTotesLesAsseguradoresEvent(evt);
+            }
+        });
+
+        javax.swing.GroupLayout asseguradoraPanelLayout = new javax.swing.GroupLayout(asseguradoraPanel);
+        asseguradoraPanel.setLayout(asseguradoraPanelLayout);
+        asseguradoraPanelLayout.setHorizontalGroup(
+            asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(registrarAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(nomAsseguradoraTextField)
+                            .addComponent(nomAsseguradoraLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cifAsseguradoraTextField)
+                            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                                .addComponent(cifAsseguradoraLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(netejarCampsAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                        .addComponent(consultaAsseguradoraPerNom, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(labelInfoTable))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(consultatAsseguradoresTotesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        asseguradoraPanelLayout.setVerticalGroup(
+            asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomAsseguradoraLabel)
+                    .addComponent(cifAsseguradoraLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomAsseguradoraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cifAsseguradoraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarAsseguradoraButton)
+                    .addComponent(netejarCampsAsseguradoraButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consultaAsseguradoraPerNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarAsseguradoraButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelInfoTable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(consultatAsseguradoresTotesButton)
+                .addContainerGap())
+        );
+
+        panelPestanas.addTab("Asseguradora", asseguradoraPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -616,13 +774,65 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         cargarTodosLosVehiculosTabla(vehicleControlador.obtenerTodosLosVehiculos());
     }//GEN-LAST:event_consultarTodosLosVehiculo
 
+    private void registrarAsseguradoraEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarAsseguradoraEvent
+        if (asseguradoraBuscada == null) {
+            if (comprovarCampsAsseguradora()) {
+                boolean insertado = asseguradoraControlador.insertar(obtenerAsseguradoraGUI());
+                lanzarMensaje(!insertado, insertado ? "Asseguradora inserida correctament."
+                        : "No s'ha inserit correctament l'asseguradora, potser pel nom (Repetit).");
+                if (insertado) {
+                    netejarCampsAsseguradoraButton(null);
+                }
+            } else {
+                lanzarMensaje(true, "Comprova que cap camp està vuit i amb el seu format (números, etc.).");
+            }
+        } else {
+            boolean borrado = asseguradoraControlador.eliminar(asseguradoraBuscada);
+            lanzarMensaje(!borrado, borrado ? "Asseguradora eliminada correctament." : "No s'ha pogut eliminar l'asseguradora.");
+            netejarCampsAsseguradoraButton(null);
+        }
+    }//GEN-LAST:event_registrarAsseguradoraEvent
+
+    private void netejarCampsAsseguradoraButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netejarCampsAsseguradoraButton
+        nomAsseguradoraTextField.setText("");
+        cifAsseguradoraTextField.setText("");
+        consultaAsseguradoraPerNom.setText("");
+        asseguradoraBuscada = null;
+        registrarAsseguradoraButton.setText("Registrar asseguradora");
+        ponerFocoAsseguradora(false);
+    }//GEN-LAST:event_netejarCampsAsseguradoraButton
+
+    private void buscarAsseguraPorNombre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarAsseguraPorNombre
+        String nomAsseguradora = consultaAsseguradoraPerNom.getText();
+        if (nomAsseguradora == null || nomAsseguradora.isEmpty()) {
+            lanzarMensaje(true, "Comprova que el camp de cerca no està vuit.");
+        } else {
+            asseguradoraBuscada = asseguradoraControlador.obtenerAsseguradoraPorNombre(nomAsseguradora);
+            if (asseguradoraBuscada == null) {
+                lanzarMensaje(false, "No s'ha trobat cap asseguradora amb aquest nom.");
+                netejarCampsAsseguradoraButton(null);
+                ponerFocoAsseguradora(true);
+            } else {
+                ponerCamposAsseguradora(asseguradoraBuscada);
+            }
+        }
+    }//GEN-LAST:event_buscarAsseguraPorNombre
+
+    private void consultarTotesLesAsseguradoresEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarTotesLesAsseguradoresEvent
+        cargarTodosLasAsseguradorasTabla(asseguradoraControlador.obtenerTodasLasAsseguradoras());
+    }//GEN-LAST:event_consultarTotesLesAsseguradoresEvent
+
+    private boolean comprovarCampsAsseguradora() {
+        return true;
+    }
+
     private void cargarTodosLosVehiculosTabla(List<Vehicle> vehicles) {
         DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_VEHICULOS, 0);
         vehiclesTable.setModel(dtm);
         for (Vehicle vehicle : vehicles) {
             dtm.addRow(new Object[]{vehicle.getId(), vehicle.getMatricula(), vehicle.getMarcaModel(),
                 vehicle.getAnyFabricacio(), vehicle.getPropietari().getNom()
-                + "(" + vehicle.getPropietari().getId() + ")"});
+                + " (" + vehicle.getPropietari().getId() + ")"});
         }
         if (vehicles.isEmpty()) {
             lanzarMensaje(false, "No hi ha cap vehicle.");
@@ -667,37 +877,83 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }
 
     // Aquí termina GUI vehicles.
+    // Aquí empieza GUI Asseguradora.
+    private void ponerCamposAsseguradora(Asseguradora asseguradora) {
+        nomAsseguradoraTextField.setText(asseguradora.getNom());
+        cifAsseguradoraTextField.setText(asseguradora.getCif());
+        registrarAsseguradoraButton.setText("Eliminar asseguradora");
+    }
 
+    private void cargarTodosLasAsseguradorasTabla(List<Asseguradora> listaAsseguradoras) {
+        DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_ASSEGURADORAS, 0);
+        asseguradoraTable.setModel(dtm);
+        for (Asseguradora asseguradora : listaAsseguradoras) {
+            dtm.addRow(new Object[]{asseguradora.getId(), asseguradora.getNom(), asseguradora.getCif()});
+        }
+        if (listaAsseguradoras.isEmpty()) {
+            lanzarMensaje(false, "No hi ha cap asseguradora.");
+        }
+    }
+
+    private Asseguradora obtenerAsseguradoraGUI() {
+        Asseguradora asseguradora = new Asseguradora();
+        asseguradora.setNom(nomAsseguradoraTextField.getText());
+        asseguradora.setCif(cifAsseguradoraTextField.getText());
+        return asseguradora;
+    }
+
+    private void ponerFocoAsseguradora(boolean ponerFocoEnBusqueda) {
+        if (ponerFocoEnBusqueda) {
+            consultaAsseguradoraPerNom.requestFocus();
+        } else {
+            nomAsseguradoraTextField.requestFocus();
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accionsLabel;
     private javax.swing.JLabel accionsLabel1;
     private javax.swing.JTextField anyFabricacioTextField;
     private javax.swing.JLabel anyLabel;
+    private javax.swing.JPanel asseguradoraPanel;
+    private javax.swing.JTable asseguradoraTable;
+    private javax.swing.JButton buscarAsseguradoraButton;
     private javax.swing.JButton buscarClientButton;
     private javax.swing.JLabel buscarClientLabel;
     private javax.swing.JButton buscarVehicleButton;
     private javax.swing.JLabel carrerLabel;
     private javax.swing.JTextField carrerTextField;
+    private javax.swing.JLabel cifAsseguradoraLabel;
+    private javax.swing.JTextField cifAsseguradoraTextField;
     private javax.swing.JPanel clientsPanel;
     private javax.swing.JTable clientsTable;
     private javax.swing.JComboBox<String> comboBoxClients;
+    private javax.swing.JTextField consultaAsseguradoraPerNom;
     private javax.swing.JTextField consultaClientTextField;
     private javax.swing.JButton consultaClientsButton;
     private javax.swing.JTextField consultaVehicleTextField;
     private javax.swing.JButton consultaVehiclesButton;
+    private javax.swing.JButton consultatAsseguradoresTotesButton;
     private javax.swing.JLabel direccioLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelInfoTable;
     private javax.swing.JLabel labelPoblacio;
     private javax.swing.JLabel marcaModelLabel;
     private javax.swing.JTextField marcaModelTextField;
     private javax.swing.JLabel matriculaLabel;
     private javax.swing.JTextField matriculaVehicleTextField;
+    private javax.swing.JButton netejarCampsAsseguradoraButton;
     private javax.swing.JButton netejarCampsClientButton;
     private javax.swing.JButton netejarCampsVehicle;
     private javax.swing.JLabel nifLabel;
     private javax.swing.JTextField nifTextField;
+    private javax.swing.JLabel nomAsseguradoraLabel;
+    private javax.swing.JTextField nomAsseguradoraTextField;
     private javax.swing.JLabel nomLabel;
     private javax.swing.JTextField nomTextField;
     private javax.swing.JLabel numeroLabel;
@@ -706,6 +962,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JTextField poblacioTextField;
     private javax.swing.JPanel polissesPanel;
     private javax.swing.JLabel propietariLabel;
+    private javax.swing.JButton registrarAsseguradoraButton;
     private javax.swing.JButton registrarClientButton;
     private javax.swing.JButton registrarVehicleButton;
     private javax.swing.JLabel totsClientsLabel;
