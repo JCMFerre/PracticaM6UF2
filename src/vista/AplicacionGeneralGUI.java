@@ -623,7 +623,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         } else {
             boolean borrado = clientControlador.eliminar(clientBuscado);
-            lanzarMensaje(!borrado, borrado ? "Client eliminat correctament." : "No s'ha pogut eliminar el client.");
+            lanzarMensaje(!borrado, borrado ? "Client eliminat correctament." : "No s'ha pogut eliminar el client (pot ser per les relacions entre taules).");
             limpiarCamposClients(null);
         }
     }//GEN-LAST:event_registrarClient
@@ -708,7 +708,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         } else {
             boolean borrado = vehicleControlador.eliminar(vehicleBuscado);
-            lanzarMensaje(!borrado, borrado ? "Vehicle eliminat correctament." : "No s'ha pogut eliminar el vehicle.");
+            lanzarMensaje(!borrado, borrado ? "Vehicle eliminat correctament." : "No s'ha pogut eliminar el vehicle (pot ser per les relacions entre taules).");
             netejarCampsVehicle(null);
         }
     }//GEN-LAST:event_registrarVehicle
@@ -780,7 +780,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         } else {
             boolean borrado = asseguradoraControlador.eliminar(asseguradoraBuscada);
-            lanzarMensaje(!borrado, borrado ? "Asseguradora eliminada correctament." : "No s'ha pogut eliminar l'asseguradora.");
+            lanzarMensaje(!borrado, borrado ? "Asseguradora eliminada correctament." : "No s'ha pogut eliminar l'asseguradora (pot ser per les relacions entre taules).");
             netejarCampsAsseguradoraButton(null);
         }
     }//GEN-LAST:event_registrarAsseguradoraEvent
