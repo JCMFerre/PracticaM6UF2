@@ -8,11 +8,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Adreca;
 import model.Client;
 import model.Vehicle;
 
 public class AplicacionGeneralGUI extends javax.swing.JFrame {
+
+    private final Object[] COLUMNAS_TABLA_CLIENTES;
+    private final Object[] COLUMNAS_TABLA_VEHICULOS;
 
     private final ClientControlador clientControlador;
     private final VehicleControlador vehicleControlador;
@@ -20,6 +24,8 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private Vehicle vehicleBuscado;
 
     public AplicacionGeneralGUI(boolean externa) {
+        this.COLUMNAS_TABLA_CLIENTES = new Object[]{"ID", "NIF", "Nom", "Carrer", "Població", "Número"};
+        this.COLUMNAS_TABLA_VEHICULOS = new Object[]{"ID", "Matrícula", "Marca | Model", "Any fabricació", "Propietari"};
         initComponents();
         setLocationRelativeTo(null);
         EntityManager entityManager = EMController.obtenerEntityManager(externa);
@@ -52,6 +58,10 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         consultaVehicleTextField = new javax.swing.JTextField();
         buscarVehicleButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        vehiclesTable = new javax.swing.JTable();
+        vehiclesTodosLabel = new javax.swing.JLabel();
+        consultaVehiclesButton = new javax.swing.JButton();
         clientsPanel = new javax.swing.JPanel();
         nifLabel = new javax.swing.JLabel();
         nifTextField = new javax.swing.JTextField();
@@ -70,6 +80,10 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         buscarClientLabel = new javax.swing.JLabel();
         consultaClientTextField = new javax.swing.JTextField();
         buscarClientButton = new javax.swing.JButton();
+        totsClientsLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        clientsTable = new javax.swing.JTable();
+        consultaClientsButton = new javax.swing.JButton();
         polissesPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +134,40 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         });
 
+        vehiclesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Matrícula", "Marca | Model", "Any fabricació", "Propietari"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(vehiclesTable);
+
+        vehiclesTodosLabel.setText("Taula amb tots els vehicles (*)");
+
+        consultaVehiclesButton.setText("* Consultar tots els vehicles");
+        consultaVehiclesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarTodosLosVehiculo(evt);
+            }
+        });
+
         javax.swing.GroupLayout vehiclesPanelLayout = new javax.swing.GroupLayout(vehiclesPanel);
         vehiclesPanel.setLayout(vehiclesPanelLayout);
         vehiclesPanelLayout.setHorizontalGroup(
@@ -127,31 +175,38 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             .addGroup(vehiclesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(vehiclesPanelLayout.createSequentialGroup()
-                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(matriculaVehicleTextField)
-                            .addComponent(anyFabricacioTextField)
-                            .addGroup(vehiclesPanelLayout.createSequentialGroup()
-                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(matriculaLabel)
-                                    .addComponent(anyLabel)
-                                    .addComponent(accionsLabel1))
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, vehiclesPanelLayout.createSequentialGroup()
+                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(matriculaLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(anyLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(accionsLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(registrarVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(matriculaVehicleTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registrarVehicleButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
-                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(marcaModelLabel)
-                            .addComponent(propietariLabel)
-                            .addComponent(comboBoxClients, 0, 221, Short.MAX_VALUE)
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(marcaModelTextField)
-                            .addComponent(netejarCampsVehicle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(vehiclesPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(netejarCampsVehicle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxClients, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, vehiclesPanelLayout.createSequentialGroup()
+                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(marcaModelLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(propietariLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(vehiclesPanelLayout.createSequentialGroup()
                         .addComponent(consultaVehicleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                        .addComponent(buscarVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                    .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(vehiclesTodosLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(consultaVehiclesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         vehiclesPanelLayout.setVerticalGroup(
@@ -185,7 +240,13 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                 .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(consultaVehicleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarVehicleButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vehiclesTodosLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(consultaVehiclesButton)
+                .addContainerGap())
         );
 
         panelPestanas.addTab("Vehicle", vehiclesPanel);
@@ -200,7 +261,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         labelPoblacio.setText("Població");
 
-        numeroLabel.setText("Numero");
+        numeroLabel.setText("Número");
 
         accionsLabel.setText("Accions");
 
@@ -227,6 +288,40 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         });
 
+        totsClientsLabel.setText("Taula amb tots els clients (*)");
+
+        clientsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NIF", "Nom", "Carrer", "Població", "Número"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(clientsTable);
+
+        consultaClientsButton.setText("* Consultar tots els clients");
+        consultaClientsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarClientesEnTabla(evt);
+            }
+        });
+
         javax.swing.GroupLayout clientsPanelLayout = new javax.swing.GroupLayout(clientsPanel);
         clientsPanel.setLayout(clientsPanelLayout);
         clientsPanelLayout.setHorizontalGroup(
@@ -234,42 +329,44 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             .addGroup(clientsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(clientsPanelLayout.createSequentialGroup()
                         .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(registrarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(clientsPanelLayout.createSequentialGroup()
-                                .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(nomTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(nifLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nomLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nifTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(nomLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 205, Short.MAX_VALUE))
+                            .addComponent(registrarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nomTextField)
+                            .addComponent(nifTextField))
                         .addGap(18, 18, 18)
-                        .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(clientsPanelLayout.createSequentialGroup()
+                        .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clientsPanelLayout.createSequentialGroup()
+                                .addComponent(poblacioTextField)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(numeroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clientsPanelLayout.createSequentialGroup()
+                                .addComponent(labelPoblacio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(numeroLabel))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clientsPanelLayout.createSequentialGroup()
                                 .addComponent(carrerLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(direccioLabel))
-                            .addGroup(clientsPanelLayout.createSequentialGroup()
-                                .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelPoblacio)
-                                    .addComponent(poblacioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(numeroLabel)
-                                    .addComponent(numeroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(netejarCampsClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(carrerTextField, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(clientsPanelLayout.createSequentialGroup()
-                        .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accionsLabel)
-                            .addComponent(buscarClientLabel))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(carrerTextField)
+                            .addComponent(netejarCampsClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
                     .addGroup(clientsPanelLayout.createSequentialGroup()
                         .addComponent(consultaClientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                        .addComponent(buscarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                    .addGroup(clientsPanelLayout.createSequentialGroup()
+                        .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(accionsLabel)
+                            .addComponent(buscarClientLabel)
+                            .addComponent(totsClientsLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(consultaClientsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         clientsPanelLayout.setVerticalGroup(
@@ -306,6 +403,12 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                 .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(consultaClientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarClientButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totsClientsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(consultaClientsButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -315,11 +418,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         polissesPanel.setLayout(polissesPanelLayout);
         polissesPanelLayout.setHorizontalGroup(
             polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
         polissesPanelLayout.setVerticalGroup(
             polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
+            .addGap(0, 393, Short.MAX_VALUE)
         );
 
         panelPestanas.addTab("Pòlisses", polissesPanel);
@@ -328,11 +431,15 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPestanas)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelPestanas, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPestanas)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelPestanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -430,7 +537,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     // Aquí empieza GUI Vehicles.
 
     private void actualizarComboBox(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_actualizarComboBox
-        cargarComboClientes(vehicleControlador.obtenerTodosLosClientes(), false);
+        cargarComboClientes(clientControlador.obtenerTodosLosClientes(), false);
     }//GEN-LAST:event_actualizarComboBox
 
     private void registrarVehicle(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVehicle
@@ -501,6 +608,40 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscarVehiclePerMatricula
 
+    private void cargarClientesEnTabla(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarClientesEnTabla
+        cargarTodosLosClientesTabla(clientControlador.obtenerTodosLosClientes());
+    }//GEN-LAST:event_cargarClientesEnTabla
+
+    private void consultarTodosLosVehiculo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarTodosLosVehiculo
+        cargarTodosLosVehiculosTabla(vehicleControlador.obtenerTodosLosVehiculos());
+    }//GEN-LAST:event_consultarTodosLosVehiculo
+
+    private void cargarTodosLosVehiculosTabla(List<Vehicle> vehicles) {
+        DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_VEHICULOS, 0);
+        vehiclesTable.setModel(dtm);
+        for (Vehicle vehicle : vehicles) {
+            dtm.addRow(new Object[]{vehicle.getId(), vehicle.getMatricula(), vehicle.getMarcaModel(),
+                vehicle.getAnyFabricacio(), vehicle.getPropietari().getNom()
+                + "(" + vehicle.getPropietari().getId() + ")"});
+        }
+        if (vehicles.isEmpty()) {
+            lanzarMensaje(false, "No hi ha cap vehicle.");
+        }
+    }
+
+    private void cargarTodosLosClientesTabla(List<Client> clientes) {
+        DefaultTableModel dtm = new DefaultTableModel(COLUMNAS_TABLA_CLIENTES, 0);
+        clientsTable.setModel(dtm);
+        for (Client cliente : clientes) {
+            dtm.addRow(new Object[]{cliente.getId(), cliente.getNif(), cliente.getNom(),
+                cliente.getAdreca().getCarrer(), cliente.getAdreca().getPoblacio(),
+                cliente.getAdreca().getNumero()});
+        }
+        if (clientes.isEmpty()) {
+            lanzarMensaje(false, "No hi ha cap client.");
+        }
+    }
+
     private boolean comprobarCamposVehiculo() {
         return true;
     }
@@ -538,11 +679,16 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JLabel carrerLabel;
     private javax.swing.JTextField carrerTextField;
     private javax.swing.JPanel clientsPanel;
+    private javax.swing.JTable clientsTable;
     private javax.swing.JComboBox<String> comboBoxClients;
     private javax.swing.JTextField consultaClientTextField;
+    private javax.swing.JButton consultaClientsButton;
     private javax.swing.JTextField consultaVehicleTextField;
+    private javax.swing.JButton consultaVehiclesButton;
     private javax.swing.JLabel direccioLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelPoblacio;
     private javax.swing.JLabel marcaModelLabel;
     private javax.swing.JTextField marcaModelTextField;
@@ -562,7 +708,10 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JLabel propietariLabel;
     private javax.swing.JButton registrarClientButton;
     private javax.swing.JButton registrarVehicleButton;
+    private javax.swing.JLabel totsClientsLabel;
     private javax.swing.JPanel vehiclesPanel;
+    private javax.swing.JTable vehiclesTable;
+    private javax.swing.JLabel vehiclesTodosLabel;
     // End of variables declaration//GEN-END:variables
 
 }

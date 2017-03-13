@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import model.Client;
 import model.Info;
@@ -20,5 +21,11 @@ public class ClientControlador extends ControladorGenerico<Client> {
             client = null;
         }
         return client;
+    }
+
+    public List<Client> obtenerTodosLosClientes() {
+        return getEntityManager()
+                .createNamedQuery(Info.QUERY_TODOS_LOS_CLIENTES, Client.class)
+                .getResultList();
     }
 }

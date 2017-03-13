@@ -12,12 +12,6 @@ public class VehicleControlador extends ControladorGenerico<Vehicle> {
         super(entityManager);
     }
 
-    public List<Client> obtenerTodosLosClientes() {
-        return getEntityManager()
-                .createNamedQuery(Info.QUERY_TODOS_LOS_CLIENTES, Client.class)
-                .getResultList();
-    }
-
     public Vehicle obtenerVehiculoPorMatricula(String matricula) {
         Vehicle vehicleTrobat;
         try {
@@ -33,5 +27,9 @@ public class VehicleControlador extends ControladorGenerico<Vehicle> {
 
     public Client obtenerClientePorId(long idClient) {
         return getEntityManager().find(Client.class, idClient);
+    }
+    
+    public List<Vehicle> obtenerTodosLosVehiculos(){
+        return getEntityManager().createQuery(Info.QUERY_VEHICLES_TODOS).getResultList();
     }
 }
