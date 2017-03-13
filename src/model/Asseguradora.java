@@ -1,12 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -28,6 +30,9 @@ public class Asseguradora implements Serializable {
 
     @Column(name = Info.ASSEGURADORA_KEY_CIF)
     private String cif;
+
+    @OneToMany(mappedBy = "asseguradora")
+    private List<Polissa> llistaPolisses;
 
     public Asseguradora(Long id, String nom, String cif) {
         this.id = id;
@@ -60,6 +65,14 @@ public class Asseguradora implements Serializable {
 
     public void setCif(String cif) {
         this.cif = cif;
+    }
+
+    public List<Polissa> getLlistaPolisses() {
+        return llistaPolisses;
+    }
+
+    public void setLlistaPolisses(List<Polissa> llistaPolisses) {
+        this.llistaPolisses = llistaPolisses;
     }
 
     @Override

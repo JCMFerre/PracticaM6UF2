@@ -45,4 +45,16 @@ public final class Info {
     public static final String PARAMETRO_QUERY_ASSEGURADORA_PER_NOM = "nom";
     public static final String QUERY_ASSEGURADORA_TODOS = "SELECT a FROM Asseguradora a";
 
+    public static final String TAULA_POLISSSA = "M6_UF2_POLISSAS";
+    public static final String POLISSA_KEY_ID = "ID_POLISSA";
+    public static final String POLISSA_KEY_NUMERO_POLISSA = "NUMERO_POLISSA";
+    public static final String POLISSA_KEY_DATA_INICI = "DATA_INICI_POLISSA";
+    public static final String POLISSA_KEY_DATA_FI = "DATA_FI_POLISSA";
+    public static final String POLISSA_KEY_TIPUS = "TIPUS_POLISSA";
+    public static final String POLISSA_KEY_PRIMA = "PRIMA_POLISSA";
+    public static final String INDEX_PRENEDOR_POLISSA = "INDEX_PRENEDOR";
+
+    public static final String RELACION_VEHICLE_POLISSA = "VEHICLE";
+    public static final String RELACIO_ASSEGURADORA_POLISSA = "ASSEGURADORA";
+
 }

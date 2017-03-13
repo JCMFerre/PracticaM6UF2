@@ -42,6 +42,9 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "propietari")
     private List<Vehicle> llistaVehicles;
 
+    @OneToMany(mappedBy = "prenedor")
+    private List<Polissa> llisPolissas;
+
     public Client(Long id, String nif, String nom, Adreca adreca) {
         this.id = id;
         this.nif = nif;
@@ -90,6 +93,14 @@ public class Client implements Serializable {
 
     public void setLlistaVehicles(List<Vehicle> llistaVehicles) {
         this.llistaVehicles = llistaVehicles;
+    }
+
+    public List<Polissa> getLlisPolissas() {
+        return llisPolissas;
+    }
+
+    public void setLlisPolissas(List<Polissa> llisPolissas) {
+        this.llisPolissas = llisPolissas;
     }
 
     @Override

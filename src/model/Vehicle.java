@@ -10,6 +10,7 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -40,12 +41,16 @@ public class Vehicle implements Serializable {
     @JoinColumn(name = Info.CLIENT_KEY_ID)
     private Client propietari;
 
-    public Vehicle(Long id, String matricula, String marcaModel, int anyFabricacio, Client propietari) {
+    @OneToOne(mappedBy = Info.RELACION_VEHICLE_POLISSA)
+    private Polissa polissa;
+
+    public Vehicle(Long id, String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {
         this.id = id;
         this.matricula = matricula;
         this.marcaModel = marcaModel;
         this.anyFabricacio = anyFabricacio;
         this.propietari = propietari;
+        this.polissa = polissa;
     }
 
     public Vehicle() {
@@ -91,6 +96,14 @@ public class Vehicle implements Serializable {
         this.propietari = propietari;
     }
 
+    public Polissa getPolissa() {
+        return polissa;
+    }
+
+    public void setPolissa(Polissa polissa) {
+        this.polissa = polissa;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -113,7 +126,7 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehicle{" + "id=" + id + ", matricula=" + matricula + ", marcaModel=" + marcaModel + ", anyFabricacio=" + anyFabricacio + ", propietari=" + propietari + '}';
+        return "Vehicle{" + "id=" + id + ", matricula=" + matricula + ", marcaModel=" + marcaModel + ", anyFabricacio=" + anyFabricacio + ", propietari=" + propietari + ", polissa=" + polissa + '}';
     }
 
 }
