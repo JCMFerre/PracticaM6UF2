@@ -35,7 +35,7 @@ public class Polissa implements Serializable {
     private Client prenedor;
 
     @OneToOne
-    @JoinColumn(name = Info.RELACION_VEHICLE_POLISSA, nullable = false)
+    @JoinColumn(name = "vehicle", nullable = false)
     private Vehicle vehicle;
 
     @Column(name = Info.POLISSA_KEY_DATA_INICI, nullable = false)
