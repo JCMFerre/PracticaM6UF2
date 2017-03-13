@@ -641,11 +641,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_limpiarCamposClients
 
     private void ponerFocoClientes(boolean ponerFocoEnBusqueda) {
-        if (ponerFocoEnBusqueda) {
-            consultaClientTextField.requestFocus();
-        } else {
-            nifTextField.requestFocus();
-        }
+        (ponerFocoEnBusqueda ? consultaClientTextField : nifTextField).requestFocus();
     }
 
     private Client obtenerClientDeGUI() {
@@ -743,11 +739,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_netejarCampsVehicle
 
     private void ponerFocoVehiculos(boolean ponerFocoEnBusqueda) {
-        if (ponerFocoEnBusqueda) {
-            marcaModelTextField.requestFocus();
-        } else {
-            consultaVehicleTextField.requestFocus();
-        }
+        (ponerFocoEnBusqueda ? consultaVehicleTextField : matriculaVehicleTextField).requestFocus();
     }
 
     private void buscarVehiclePerMatricula(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarVehiclePerMatricula
@@ -903,13 +895,9 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }
 
     private void ponerFocoAsseguradora(boolean ponerFocoEnBusqueda) {
-        if (ponerFocoEnBusqueda) {
-            consultaAsseguradoraPerNom.requestFocus();
-        } else {
-            nomAsseguradoraTextField.requestFocus();
-        }
+        (ponerFocoEnBusqueda ? consultaAsseguradoraPerNom : nomAsseguradoraTextField).requestFocus();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accionsLabel;
     private javax.swing.JLabel accionsLabel1;
