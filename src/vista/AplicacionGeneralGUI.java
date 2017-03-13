@@ -93,6 +93,21 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         vehiclesTable = new javax.swing.JTable();
         vehiclesTodosLabel = new javax.swing.JLabel();
         consultaVehiclesButton = new javax.swing.JButton();
+        asseguradoraPanel = new javax.swing.JPanel();
+        nomAsseguradoraLabel = new javax.swing.JLabel();
+        nomAsseguradoraTextField = new javax.swing.JTextField();
+        cifAsseguradoraLabel = new javax.swing.JLabel();
+        cifAsseguradoraTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        registrarAsseguradoraButton = new javax.swing.JButton();
+        netejarCampsAsseguradoraButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        consultaAsseguradoraPerNom = new javax.swing.JTextField();
+        buscarAsseguradoraButton = new javax.swing.JButton();
+        labelInfoTable = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        asseguradoraTable = new javax.swing.JTable();
+        consultatAsseguradoresTotesButton = new javax.swing.JButton();
         polissesPanel = new javax.swing.JPanel();
         numeroPolissaLabel = new javax.swing.JLabel();
         numeroPolissaTextField = new javax.swing.JTextField();
@@ -123,21 +138,6 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         cercaPerTipusPolissaButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         polissaTable = new javax.swing.JTable();
-        asseguradoraPanel = new javax.swing.JPanel();
-        nomAsseguradoraLabel = new javax.swing.JLabel();
-        nomAsseguradoraTextField = new javax.swing.JTextField();
-        cifAsseguradoraLabel = new javax.swing.JLabel();
-        cifAsseguradoraTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        registrarAsseguradoraButton = new javax.swing.JButton();
-        netejarCampsAsseguradoraButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        consultaAsseguradoraPerNom = new javax.swing.JTextField();
-        buscarAsseguradoraButton = new javax.swing.JButton();
-        labelInfoTable = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        asseguradoraTable = new javax.swing.JTable();
-        consultatAsseguradoresTotesButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestió");
@@ -467,6 +467,136 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         panelPestanas.addTab("Vehicle", vehiclesPanel);
 
+        nomAsseguradoraLabel.setText("Nom");
+
+        cifAsseguradoraLabel.setText("NIF o CIF");
+
+        jLabel2.setText("Accions");
+
+        registrarAsseguradoraButton.setText("Registrar asseguradora");
+        registrarAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarAsseguradoraEvent(evt);
+            }
+        });
+
+        netejarCampsAsseguradoraButton.setText("Netejar camps");
+        netejarCampsAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                netejarCampsAsseguradoraButton(evt);
+            }
+        });
+
+        jLabel3.setText("Buscar asseguradora per nom");
+
+        buscarAsseguradoraButton.setText("Buscar");
+        buscarAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarAsseguraPorNombre(evt);
+            }
+        });
+
+        labelInfoTable.setText("Taula amb totes les asseguradores (*)");
+
+        asseguradoraTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nom", "NIF o CIF"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(asseguradoraTable);
+
+        consultatAsseguradoresTotesButton.setText("* Consultar totes les asseguradores");
+        consultatAsseguradoresTotesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarTotesLesAsseguradoresEvent(evt);
+            }
+        });
+
+        javax.swing.GroupLayout asseguradoraPanelLayout = new javax.swing.GroupLayout(asseguradoraPanel);
+        asseguradoraPanel.setLayout(asseguradoraPanelLayout);
+        asseguradoraPanelLayout.setHorizontalGroup(
+            asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(registrarAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(nomAsseguradoraTextField)
+                            .addComponent(nomAsseguradoraLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cifAsseguradoraTextField)
+                            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                                .addComponent(cifAsseguradoraLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(netejarCampsAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                        .addComponent(consultaAsseguradoraPerNom, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(labelInfoTable))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(consultatAsseguradoresTotesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        asseguradoraPanelLayout.setVerticalGroup(
+            asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomAsseguradoraLabel)
+                    .addComponent(cifAsseguradoraLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomAsseguradoraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cifAsseguradoraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarAsseguradoraButton)
+                    .addComponent(netejarCampsAsseguradoraButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consultaAsseguradoraPerNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarAsseguradoraButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelInfoTable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(consultatAsseguradoresTotesButton)
+                .addContainerGap())
+        );
+
+        panelPestanas.addTab("Asseguradora", asseguradoraPanel);
+
         numeroPolissaLabel.setText("Número");
 
         comboBoxClientsPolissa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un client" }));
@@ -697,136 +827,6 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         );
 
         panelPestanas.addTab("Pòlisses", polissesPanel);
-
-        nomAsseguradoraLabel.setText("Nom");
-
-        cifAsseguradoraLabel.setText("NIF o CIF");
-
-        jLabel2.setText("Accions");
-
-        registrarAsseguradoraButton.setText("Registrar asseguradora");
-        registrarAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarAsseguradoraEvent(evt);
-            }
-        });
-
-        netejarCampsAsseguradoraButton.setText("Netejar camps");
-        netejarCampsAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                netejarCampsAsseguradoraButton(evt);
-            }
-        });
-
-        jLabel3.setText("Buscar asseguradora per nom");
-
-        buscarAsseguradoraButton.setText("Buscar");
-        buscarAsseguradoraButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarAsseguraPorNombre(evt);
-            }
-        });
-
-        labelInfoTable.setText("Taula amb totes les asseguradores (*)");
-
-        asseguradoraTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nom", "NIF o CIF"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(asseguradoraTable);
-
-        consultatAsseguradoresTotesButton.setText("* Consultar totes les asseguradores");
-        consultatAsseguradoresTotesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarTotesLesAsseguradoresEvent(evt);
-            }
-        });
-
-        javax.swing.GroupLayout asseguradoraPanelLayout = new javax.swing.GroupLayout(asseguradoraPanel);
-        asseguradoraPanel.setLayout(asseguradoraPanelLayout);
-        asseguradoraPanelLayout.setHorizontalGroup(
-            asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
-                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(registrarAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                            .addComponent(nomAsseguradoraTextField)
-                            .addComponent(nomAsseguradoraLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cifAsseguradoraTextField)
-                            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
-                                .addComponent(cifAsseguradoraLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(netejarCampsAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
-                        .addComponent(consultaAsseguradoraPerNom, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarAsseguradoraButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(asseguradoraPanelLayout.createSequentialGroup()
-                        .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(labelInfoTable))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(consultatAsseguradoresTotesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        asseguradoraPanelLayout.setVerticalGroup(
-            asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(asseguradoraPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomAsseguradoraLabel)
-                    .addComponent(cifAsseguradoraLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomAsseguradoraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cifAsseguradoraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registrarAsseguradoraButton)
-                    .addComponent(netejarCampsAsseguradoraButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(consultaAsseguradoraPerNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarAsseguradoraButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelInfoTable)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(consultatAsseguradoresTotesButton)
-                .addContainerGap())
-        );
-
-        panelPestanas.addTab("Asseguradora", asseguradoraPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
