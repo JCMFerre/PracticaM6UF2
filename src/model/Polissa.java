@@ -10,13 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
+@NamedQueries({
+    @NamedQuery(name = Info.NOM_QUERY_POLISSA_CLIENTE, query = Info.QUERY_POLISSA_POR_ID_CLIENTE)
+    ,@NamedQuery(name = Info.NOM_QUERY_POLISSA_VEHICLE, query = Info.QUERY_POLISSA_POR_ID_VEHICLE)})
 @Table(name = Info.TAULA_POLISSSA, indexes = {
     @Index(columnList = Info.CLIENT_KEY_ID, name = Info.INDEX_PRENEDOR_POLISSA)})
-@Entity
 public class Polissa implements Serializable {
 
     @Transient
@@ -35,7 +40,7 @@ public class Polissa implements Serializable {
     private Client prenedor;
 
     @OneToOne
-    @JoinColumn(name = "vehicle", nullable = false)
+    @JoinColumn(name = Info.RELACION_VEHICLE_POLISSA, nullable = false)
     private Vehicle vehicle;
 
     @Column(name = Info.POLISSA_KEY_DATA_INICI, nullable = false)

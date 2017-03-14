@@ -54,8 +54,15 @@ public final class Info {
     public static final String POLISSA_KEY_PRIMA = "PRIMA_POLISSA";
     public static final String INDEX_PRENEDOR_POLISSA = "INDEX_PRENEDOR";
     public static final String QUERY_POLISSA_TODOS = "SELECT p FROM Polissa p";
+    public static final String QUERY_POLISSA_POR_ID_CLIENTE = "SELECT p FROM Polissa p WHERE p.prenedor.id=:id";
+    public static final String NOM_QUERY_POLISSA_CLIENTE = "buscarPolizaPorIdCliente";
+    public static final String QUERY_POLISSA_POR_ID_VEHICLE = "SELECT p FROM Polissa p WHERE p.vehicle.id=:id";
+    public static final String NOM_QUERY_POLISSA_VEHICLE = "buscarPolizaPorIdVehicle";
+    public static final String PARAMETRO_QUERY_POLISSA_ID = "id";
 
-    public static final String RELACION_VEHICLE_POLISSA = "VEHICLE";
-    public static final String RELACIO_ASSEGURADORA_POLISSA = "ASSEGURADORA";
+    public static final String RELACION_VEHICLE_POLISSA = "vehicle";
+    public static final String RELACION_ASSEGURADORA_POLISSA = "asseguradora";
+    public static final String RELACION_POLISSA_VEHICLE = "propietari";
+    public static final String RELACION_POLISSA_CLIENT = "prenedor";
 
 }

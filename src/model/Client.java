@@ -39,10 +39,10 @@ public class Client implements Serializable {
     @Embedded
     private Adreca adreca;
 
-    @OneToMany(mappedBy = "propietari")
+    @OneToMany(mappedBy = Info.RELACION_POLISSA_VEHICLE)
     private List<Vehicle> llistaVehicles;
 
-    @OneToMany(mappedBy = "prenedor")
+    @OneToMany(mappedBy = Info.RELACION_POLISSA_CLIENT)
     private List<Polissa> llisPolissas;
 
     public Client(Long id, String nif, String nom, Adreca adreca) {

@@ -41,7 +41,7 @@ public class Vehicle implements Serializable {
     @JoinColumn(name = Info.CLIENT_KEY_ID)
     private Client propietari;
 
-    @OneToOne(mappedBy = "vehicle")
+    @OneToOne(mappedBy = Info.RELACION_VEHICLE_POLISSA)
     private Polissa polissa;
 
     public Vehicle(Long id, String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {

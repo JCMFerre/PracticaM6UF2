@@ -28,8 +28,8 @@ public class VehicleControlador extends ControladorGenerico<Vehicle> {
     public Client obtenerClientePorId(long idClient) {
         return getEntityManager().find(Client.class, idClient);
     }
-    
-    public List<Vehicle> obtenerTodosLosVehiculos(){
+
+    public List<Vehicle> obtenerTodosLosVehiculos() {
         return getEntityManager().createQuery(Info.QUERY_VEHICLES_TODOS).getResultList();
     }
 }

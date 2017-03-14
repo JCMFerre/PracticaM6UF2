@@ -31,7 +31,7 @@ public class Asseguradora implements Serializable {
     @Column(name = Info.ASSEGURADORA_KEY_CIF)
     private String cif;
 
-    @OneToMany(mappedBy = "asseguradora")
+    @OneToMany(mappedBy = Info.RELACION_ASSEGURADORA_POLISSA)
     private List<Polissa> llistaPolisses;
 
     public Asseguradora(Long id, String nom, String cif) {
