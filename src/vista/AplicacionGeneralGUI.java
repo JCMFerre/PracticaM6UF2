@@ -137,7 +137,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         comboBoxAsseguradoresPolissa = new javax.swing.JComboBox<>();
         tipusPolissaLabel = new javax.swing.JLabel();
         radioATercers = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        radioATot = new javax.swing.JRadioButton();
         importPolissaLabel = new javax.swing.JLabel();
         importPolissaTextField = new javax.swing.JTextField();
         accionsPolissaLabel = new javax.swing.JLabel();
@@ -674,8 +674,8 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         radioATercers.setSelected(true);
         radioATercers.setText("Tercers");
 
-        buttonGroupTipus.add(jRadioButton1);
-        jRadioButton1.setText("Tot risc");
+        buttonGroupTipus.add(radioATot);
+        radioATot.setText("Tot risc");
 
         importPolissaLabel.setText("Import de l'assegurança");
 
@@ -758,7 +758,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                             .addGroup(polissesPanelLayout.createSequentialGroup()
                                 .addComponent(radioATercers)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton1)))
+                                .addComponent(radioATot)))
                         .addGap(18, 18, 18)
                         .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboBoxAsseguradoresPolissa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -844,7 +844,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                 .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(radioATercers)
-                        .addComponent(jRadioButton1))
+                        .addComponent(radioATot))
                     .addComponent(comboBoxAsseguradoresPolissa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(accionsPolissaLabel)
@@ -1132,6 +1132,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         importPolissaTextField.setText("");
         cercarPolissaTextField.setText("");
         radioATercers.setSelected(true);
+        polissaBuscada = null;
         registrarPolissaButton.setText("Registrar polissa");
         ponerFocoPolissa(false);
     }//GEN-LAST:event_netejasCampsPolissaEvent
@@ -1159,6 +1160,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             dataFiPolissaTextField.setText(sdf.format(polissaBuscada.getDataFi()));
             importPolissaTextField.setText(Double.toString(polissaBuscada.getPrima()));
             radioATercers.setSelected(polissaBuscada.isTipus());
+            radioATot.setSelected(!polissaBuscada.isTipus());
             cargarListaComboAsseguradorasPolissa(Arrays.asList(polissaBuscada.getAsseguradora()), true);
             cargarListaComboClientesPolissa(Arrays.asList(polissaBuscada.getPrenedor()), true);
             cargarListaComboVehiclesPolissa(Arrays.asList(polissaBuscada.getVehicle()), true);
@@ -1427,7 +1429,6 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1458,6 +1459,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     private javax.swing.JPanel polissesPanel;
     private javax.swing.JLabel propietariLabel;
     private javax.swing.JRadioButton radioATercers;
+    private javax.swing.JRadioButton radioATot;
     private javax.swing.JRadioButton rbIDClientPolissa;
     private javax.swing.JRadioButton rbIDPolissa;
     private javax.swing.JRadioButton rbIDVehiclePolissa;

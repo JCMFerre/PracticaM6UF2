@@ -818,7 +818,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="radioATercers" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radioATot" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -930,7 +930,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="radioATercers" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioATot" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="comboBoxAsseguradoresPolissa" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1058,7 +1058,7 @@
                 <Property name="text" type="java.lang.String" value="Tercers"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+            <Component class="javax.swing.JRadioButton" name="radioATot">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTipus"/>
