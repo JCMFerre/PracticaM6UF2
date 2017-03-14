@@ -32,7 +32,7 @@ public class Polissa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = Info.POLISSA_KEY_NUMERO_POLISSA, length = 10)
+    @Column(name = Info.POLISSA_KEY_NUMERO_POLISSA, length = 10, nullable = false)
     private String numero;
 
     @ManyToOne
@@ -56,7 +56,7 @@ public class Polissa implements Serializable {
     private double prima;
 
     @ManyToOne
-    @JoinColumn(name = Info.ASSEGURADORA_KEY_ID)
+    @JoinColumn(name = Info.ASSEGURADORA_KEY_ID, nullable = false)
     private Asseguradora asseguradora;
 
     public Polissa(Long id, String numero, Client prenedor, Vehicle vehicle, Date dataInici, Date dataFi, boolean tipus, double prima, Asseguradora asseguradora) {

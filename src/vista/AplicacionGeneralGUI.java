@@ -158,7 +158,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         setTitle("Gestió");
         setResizable(false);
 
-        nifLabel.setText("NIF");
+        nifLabel.setText("NIF (Requerit, màxim 9 caràcters)");
 
         nomLabel.setText("Nom");
 
@@ -243,7 +243,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                                 .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(nifLabel, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nomLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 405, Short.MAX_VALUE))
+                                .addGap(0, 271, Short.MAX_VALUE))
                             .addComponent(registrarClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nomTextField)
                             .addComponent(nifTextField))
@@ -321,7 +321,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         panelPestanas.addTab("Clients", clientsPanel);
 
-        matriculaLabel.setText("Matrícula");
+        matriculaLabel.setText("Matrícula (Requerit, màxim 7 caràcters)");
 
         marcaModelLabel.setText("Marca | Model");
 
@@ -406,27 +406,24 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             .addGroup(vehiclesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                     .addGroup(vehiclesPanelLayout.createSequentialGroup()
-                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, vehiclesPanelLayout.createSequentialGroup()
-                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(matriculaLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(anyLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(accionsLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(matriculaVehicleTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(registrarVehicleButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(marcaModelTextField)
-                            .addComponent(netejarCampsVehicle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboBoxClients, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, vehiclesPanelLayout.createSequentialGroup()
-                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(marcaModelLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(propietariLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(matriculaLabel)
+                            .addComponent(anyLabel)
+                            .addComponent(accionsLabel1)
+                            .addComponent(matriculaVehicleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                                        .addComponent(marcaModelLabel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(marcaModelTextField)))
+                            .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(propietariLabel)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(consultaVehiclesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(vehiclesPanelLayout.createSequentialGroup()
@@ -434,10 +431,22 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(vehiclesTodosLabel))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(vehiclesPanelLayout.createSequentialGroup()
-                        .addComponent(consultaVehicleTextField)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscarVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vehiclesPanelLayout.createSequentialGroup()
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                                .addComponent(consultaVehicleTextField)
+                                .addGap(18, 18, 18))
+                            .addGroup(vehiclesPanelLayout.createSequentialGroup()
+                                .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(registrarVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)))
+                        .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(netejarCampsVehicle, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                            .addComponent(buscarVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vehiclesPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(comboBoxClients, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         vehiclesPanelLayout.setVerticalGroup(
@@ -454,7 +463,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(anyLabel)
-                    .addComponent(propietariLabel))
+                    .addComponent(propietariLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(anyFabricacioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,7 +491,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         panelPestanas.addTab("Vehicle", vehiclesPanel);
 
-        nomAsseguradoraLabel.setText("Nom");
+        nomAsseguradoraLabel.setText("Nom (Requerit, màxim 100 caràcters)");
 
         cifAsseguradoraLabel.setText("NIF o CIF");
 
@@ -552,7 +561,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             .addGroup(asseguradoraPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                     .addGroup(asseguradoraPanelLayout.createSequentialGroup()
                         .addGroup(asseguradoraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -614,7 +623,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
 
         panelPestanas.addTab("Asseguradora", asseguradoraPanel);
 
-        numeroPolissaLabel.setText("Número");
+        numeroPolissaLabel.setText("Número (*)");
 
         comboBoxClientsPolissa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un client" }));
         comboBoxClientsPolissa.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -638,15 +647,15 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             }
         });
 
-        clientPolissaLabel.setText("Client (Prenedor)");
+        clientPolissaLabel.setText("Client (Prenedor) (*)");
 
-        vehiclePolissaLabel.setText("Vehicle");
+        vehiclePolissaLabel.setText("Vehicle (*)");
 
-        dataIniciPolissaLabel.setText("Data inici (dd/mm/yyyy)");
+        dataIniciPolissaLabel.setText("Data inici (dd/mm/yyyy) (*)");
 
-        dataFiLabelPolissa.setText("Data fi (dd/mm/yyyy)");
+        dataFiLabelPolissa.setText("Data fi (dd/mm/yyyy) (*)");
 
-        asseguradoraPolisaLabel.setText("Asseguradora");
+        asseguradoraPolisaLabel.setText("Asseguradora (*)");
 
         comboBoxAsseguradoresPolissa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una aseguradora" }));
         comboBoxAsseguradoresPolissa.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -742,7 +751,7 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, polissesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                     .addGroup(polissesPanelLayout.createSequentialGroup()
                         .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tipusPolissaLabel)
@@ -757,12 +766,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
                                 .addComponent(asseguradoraPolisaLabel)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(polissesPanelLayout.createSequentialGroup()
-                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(dataIniciPolissaTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                .addComponent(numeroPolissaTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(numeroPolissaLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(dataIniciPolissaLabel))
+                        .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(numeroPolissaLabel)
+                            .addComponent(dataIniciPolissaLabel)
+                            .addComponent(dataIniciPolissaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(numeroPolissaTextField))
                         .addGap(18, 18, 18)
                         .addGroup(polissesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dataFiPolissaTextField)
@@ -930,9 +938,15 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }
 
     private Adreca obtenerAdrecaDeGUI() {
-        return new Adreca(carrerTextField.getText(),
-                Integer.parseInt(numeroTextField.getText()),
-                poblacioTextField.getText());
+        Adreca adreca = new Adreca();
+        adreca.setCarrer(carrerTextField.getText());
+        adreca.setPoblacio(poblacioTextField.getText());
+        try {
+            adreca.setNumero(Integer.parseInt(numeroTextField.getText()));
+        } catch (NumberFormatException nfe) {
+            // Si salta la excepción no añade el número.
+        }
+        return adreca;
     }
 
     private void buscarClientPorNombre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarClientPorNombre
@@ -962,7 +976,9 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }
 
     private boolean comprobarCamposClients() {
-        return true;
+        return nifTextField.getText() != null
+                && !nifTextField.getText().isEmpty()
+                && nifTextField.getText().length() <= 9;
     }
 
     private void actualizarComboBox(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_actualizarComboBox
@@ -992,7 +1008,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         Vehicle vehicle = new Vehicle();
         vehicle.setMatricula(matriculaVehicleTextField.getText().toUpperCase());
         vehicle.setMarcaModel(marcaModelTextField.getText());
-        vehicle.setAnyFabricacio(Integer.parseInt(anyFabricacioTextField.getText()));
+        try {
+            vehicle.setAnyFabricacio(Integer.parseInt(anyFabricacioTextField.getText()));
+        } catch (NumberFormatException nfe) {
+            // Controlamos la posible excepción.
+        }
         vehicle.setPropietari(obtenerClienteParseandoComboBox());
         return vehicle;
     }
@@ -1166,7 +1186,24 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarPolissaEvent
 
     private boolean comprovarCampsPolissa() {
-        return true;
+        return numeroPolissaTextField.getText() != null
+                && !numeroPolissaTextField.getText().isEmpty()
+                && numeroPolissaTextField.getText().length() <= 10
+                && comprobarFechas() && comboBoxAsseguradoresPolissa.getSelectedIndex() > 0
+                && comboBoxClientsPolissa.getSelectedIndex() > 0
+                && comboBoxVehiclePolissa.getSelectedIndex() > 0;
+    }
+
+    private boolean comprobarFechas() {
+        boolean correcto;
+        try {
+            sdf.parse(dataIniciPolissaTextField.getText());
+            sdf.parse(dataFiPolissaTextField.getText());
+            correcto = true;
+        } catch (Exception exception) {
+            correcto = false;
+        }
+        return correcto;
     }
 
     private Polissa obtenerPolissaGUI() {
@@ -1182,7 +1219,11 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
         polissa.setVehicle(vehicleControlador.obtenerPorId(Vehicle.class, obtenerIdVehicleComboPolissa()));
         polissa.setAsseguradora(asseguradoraControlador.obtenerPorId(Asseguradora.class, obtenerIdAsseguradoraComboPolissa()));
         polissa.setTipus(radioATercers.isSelected());
-        polissa.setPrima(Double.parseDouble(importPolissaTextField.getText()));
+        try {
+            polissa.setPrima(Double.parseDouble(importPolissaTextField.getText()));
+        } catch (NumberFormatException nfe) {
+            // Controlamos la posible excepción.
+        }
         return polissa;
     }
 
@@ -1255,7 +1296,9 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }
 
     private boolean comprovarCampsAsseguradora() {
-        return true;
+        return nomAsseguradoraTextField.getText() != null
+                && !nomAsseguradoraTextField.getText().isEmpty()
+                && nomAsseguradoraTextField.getText().length() <= 100;
     }
 
     private void cargarTodosLosVehiculosTabla(List<Vehicle> vehicles) {
@@ -1285,7 +1328,10 @@ public class AplicacionGeneralGUI extends javax.swing.JFrame {
     }
 
     private boolean comprobarCamposVehiculo() {
-        return true;
+        return matriculaVehicleTextField.getText() != null
+                && !matriculaVehicleTextField.getText().isEmpty()
+                && matriculaVehicleTextField.getText().length() <= 7
+                && comboBoxClients.getSelectedIndex() > 0;
     }
 
     private void ponerCamposVehiculo(Vehicle vehicle) {

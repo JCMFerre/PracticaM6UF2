@@ -74,7 +74,7 @@
                                           <Component id="nifLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="nomLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="405" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="271" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="registrarClientButton" max="32767" attributes="0"/>
                                   <Component id="nomTextField" alignment="0" max="32767" attributes="0"/>
@@ -174,7 +174,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="nifLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="NIF"/>
+                <Property name="text" type="java.lang.String" value="NIF (Requerit, m&#xe0;xim 9 car&#xe0;cters)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nifTextField">
@@ -338,31 +338,28 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="1" pref="675" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="1" pref="683" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="matriculaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="anyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="accionsLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="matriculaVehicleTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="registrarVehicleButton" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="anyFabricacioTextField" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="matriculaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="anyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="accionsLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="matriculaVehicleTextField" min="-2" pref="335" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="marcaModelTextField" max="32767" attributes="0"/>
-                                  <Component id="netejarCampsVehicle" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="comboBoxClients" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="marcaModelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="propietariLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="marcaModelLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="marcaModelTextField" max="32767" attributes="0"/>
                                       </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="propietariLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -375,10 +372,28 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="consultaVehicleTextField" max="32767" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="buscarVehicleButton" min="-2" pref="331" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="consultaVehicleTextField" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="anyFabricacioTextField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="registrarVehicleButton" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="netejarCampsVehicle" pref="331" max="32767" attributes="0"/>
+                                  <Component id="buscarVehicleButton" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="comboBoxClients" min="-2" pref="331" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -401,7 +416,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="anyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="propietariLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="propietariLabel" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -436,7 +451,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="matriculaLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Matr&#xed;cula"/>
+                <Property name="text" type="java.lang.String" value="Matr&#xed;cula (Requerit, m&#xe0;xim 7 car&#xe0;cters)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="matriculaVehicleTextField">
@@ -595,7 +610,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" pref="675" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="683" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -676,7 +691,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="nomAsseguradoraLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nom"/>
+                <Property name="text" type="java.lang.String" value="Nom (Requerit, m&#xe0;xim 100 car&#xe0;cters)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nomAsseguradoraTextField">
@@ -796,7 +811,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane4" alignment="1" pref="675" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="1" pref="683" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="tipusPolissaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -816,22 +831,20 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="dataIniciPolissaTextField" alignment="0" pref="122" max="32767" attributes="0"/>
-                                      <Component id="numeroPolissaTextField" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="numeroPolissaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="numeroPolissaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="dataIniciPolissaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dataIniciPolissaTextField" pref="132" max="32767" attributes="0"/>
+                                  <Component id="numeroPolissaTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="dataFiPolissaTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="comboBoxClientsPolissa" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="dataFiPolissaTextField" max="32767" attributes="0"/>
+                                  <Component id="comboBoxClientsPolissa" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="clientPolissaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="dataFiLabelPolissa" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="clientPolissaLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="dataFiLabelPolissa" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -952,7 +965,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="numeroPolissaLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
+                <Property name="text" type="java.lang.String" value="N&#xfa;mero (*)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="numeroPolissaTextField">
@@ -989,31 +1002,31 @@
             </Component>
             <Component class="javax.swing.JLabel" name="clientPolissaLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Client (Prenedor)"/>
+                <Property name="text" type="java.lang.String" value="Client (Prenedor) (*)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="vehiclePolissaLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Vehicle"/>
+                <Property name="text" type="java.lang.String" value="Vehicle (*)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="dataIniciPolissaLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Data inici (dd/mm/yyyy)"/>
+                <Property name="text" type="java.lang.String" value="Data inici (dd/mm/yyyy) (*)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="dataIniciPolissaTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="dataFiLabelPolissa">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Data fi (dd/mm/yyyy)"/>
+                <Property name="text" type="java.lang.String" value="Data fi (dd/mm/yyyy) (*)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="dataFiPolissaTextField">
             </Component>
             <Component class="javax.swing.JLabel" name="asseguradoraPolisaLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Asseguradora"/>
+                <Property name="text" type="java.lang.String" value="Asseguradora (*)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboBoxAsseguradoresPolissa">
